@@ -13,4 +13,10 @@ npm run build
 echo "Deploying to Netlify..."
 npx netlify-cli deploy --prod --dir=dist --site=$NETLIFY_SITE_ID
 
+echo "Pushing to GitHub..."
+git add -A
+git commit -m "Deploy $(date '+%Y-%m-%d %H:%M')" 2>/dev/null || true
+git pull origin main --rebase --quiet 2>/dev/null || true
+git push origin main --quiet 2>/dev/null || true
+
 echo "Done! Site: https://jacgautreau.com"
