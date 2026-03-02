@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Instagram poem images — deployed via CLI, not tracked in git
+instagram-poems/
+public/poems/

@@ -1,0 +1,181 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import content from '../../content/fr.json';
+import fs from 'fs';
+import path from 'path';
+
+const poemsDir = path.join(process.cwd(), 'instagram-poems');
+let images: { src: string; date: string; year: string }[] = [];
+
+if (fs.existsSync(poemsDir)) {
+  images = fs.readdirSync(poemsDir)
+    .filter(f => f.endsWith('.jpg') && !f.includes('profile_pic'))
+    .sort((a, b) => a.localeCompare(b))
+    .map(f => {
+      const dateMatch = f.match(/^(\d{4}-\d{2}-\d{2})/);
+      const date = dateMatch ? dateMatch[1] : '';
+      const year = date ? date.slice(0, 4) : '';
+      return { src: `/poems/${f}`, date, year };
+    });
+}
+
+const years = [...new Set(images.map(i => i.year))].filter(Boolean).sort().reverse();
+---
+
+<Layout title="Poèmes — Jac Gautreau" lang="fr">
+  <div class="min-h-screen bg-[#0a0a0a] text-white">
+
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-bg backdrop-blur-sm border-b border-themed">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/fr" class="text-xl font-bold tracking-tight hover:text-accent transition-colors">JG<span class="text-accent">.</span></a>
+        <div class="flex items-center gap-8">
+          <div class="hidden md:flex gap-6 text-sm">
+            <a href="/fr/#about" class="text-text-secondary hover:text-accent transition-colors">{content.nav.about}</a>
+            <a href="/fr/#work" class="text-text-secondary hover:text-accent transition-colors">{content.nav.work}</a>
+            <a href="/fr/#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
+            <a href="/fr/writing" class="text-text-secondary hover:text-accent transition-colors">{content.nav.writing}</a>
+            <a href="/fr/poems" class="text-accent transition-colors">Poèmes</a>
+            <a href="/fr/#contact" class="text-text-secondary hover:text-accent transition-colors">{content.nav.contact}</a>
+          </div>
+          <a href="/fr/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">CV</a>
+          <a href="/poems" class="px-3 py-1 border border-themed-strong rounded text-sm text-text-secondary hover:border-accent hover:text-accent transition-colors">EN</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="px-6 pt-32 pb-8 max-w-6xl mx-auto">
+      <h1 class="text-4xl font-semibold tracking-tight mb-3">Poèmes</h1>
+      <p class="text-neutral-400 max-w-xl">Une collection de poèmes écrits pendant la pandémie. Un poème, un jour à la fois.</p>
+    </header>
+
+    <!-- Year filter -->
+    {years.length > 1 && (
+      <div class="px-6 pb-8 max-w-6xl mx-auto flex flex-wrap gap-2">
+        <button class="year-btn active px-4 py-1.5 rounded-full text-sm border border-white/20 text-neutral-300 bg-white/10 hover:bg-white/15 transition-colors" data-year="all">Tout</button>
+        {years.map(year => (
+          <button class="year-btn px-4 py-1.5 rounded-full text-sm border border-white/10 text-neutral-500 hover:text-neutral-300 hover:border-white/20 transition-colors" data-year={year}>{year}</button>
+        ))}
+      </div>
+    )}
+
+    <!-- Grid -->
+    <main class="px-6 pb-16 max-w-6xl mx-auto">
+      {images.length === 0 ? (
+        <p class="text-neutral-600 text-center py-20">Chargement des poèmes — revenez bientôt.</p>
+      ) : (
+        <div id="poems-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          {images.map((img, i) => (
+            <button
+              class="poem-item group relative aspect-square overflow-hidden rounded-lg bg-neutral-900 hover:ring-2 hover:ring-white/30 transition-all"
+              data-src={img.src}
+              data-index={i}
+              data-year={img.year}
+            >
+              <img
+                src={img.src}
+                alt={`Poème du ${img.date}`}
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <span class="opacity-0 group-hover:opacity-100 text-white text-2xl transition-opacity">⊕</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center p-4">
+      <button id="lb-close" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-3xl w-10 h-10 flex items-center justify-center">✕</button>
+      <button id="lb-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-4xl w-12 h-12 flex items-center justify-center">‹</button>
+      <button id="lb-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-4xl w-12 h-12 flex items-center justify-center">›</button>
+      <img id="lb-img" src="" alt="" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl" />
+      <p id="lb-date" class="text-neutral-600 text-sm mt-4"></p>
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  const items = document.querySelectorAll('.poem-item') as NodeListOf<HTMLElement>;
+  const lightbox = document.getElementById('lightbox')!;
+  const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+  const lbDate = document.getElementById('lb-date')!;
+  const lbClose = document.getElementById('lb-close')!;
+  const lbPrev = document.getElementById('lb-prev')!;
+  const lbNext = document.getElementById('lb-next')!;
+
+  let currentIndex = 0;
+  let visibleItems: HTMLElement[] = [];
+
+  function openLightbox(index: number) {
+    visibleItems = [...items].filter(el => !el.classList.contains('hidden'));
+    currentIndex = index;
+    showImage(currentIndex);
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function showImage(index: number) {
+    const item = visibleItems[index];
+    if (!item) return;
+    const src = item.getAttribute('data-src') || '';
+    lbImg.src = src;
+    lbDate.textContent = src.split('/').pop()?.replace('_UTC.jpg', '').replace(/_/g, ' ') || '';
+    lbPrev.style.opacity = index > 0 ? '1' : '0.2';
+    lbNext.style.opacity = index < visibleItems.length - 1 ? '1' : '0.2';
+  }
+
+  items.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  lbPrev.addEventListener('click', () => {
+    if (currentIndex > 0) { currentIndex--; showImage(currentIndex); }
+  });
+
+  lbNext.addEventListener('click', () => {
+    if (currentIndex < visibleItems.length - 1) { currentIndex++; showImage(currentIndex); }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; showImage(currentIndex); }
+    if (e.key === 'ArrowRight' && currentIndex < visibleItems.length - 1) { currentIndex++; showImage(currentIndex); }
+  });
+
+  document.querySelectorAll('.year-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.year-btn').forEach(b => {
+        b.classList.remove('active', 'bg-white/10', 'text-neutral-300', 'border-white/20');
+        b.classList.add('text-neutral-500', 'border-white/10');
+      });
+      btn.classList.add('active', 'bg-white/10', 'text-neutral-300', 'border-white/20');
+      btn.classList.remove('text-neutral-500', 'border-white/10');
+
+      const year = btn.getAttribute('data-year');
+      items.forEach(item => {
+        if (year === 'all' || item.getAttribute('data-year') === year) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

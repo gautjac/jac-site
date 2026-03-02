@@ -10,7 +10,6 @@ redirects = []
 publish = "/Users/jacquesgautreau/.openclaw/workspace/jac-site/dist"
 publishOrigin = "ui"
 commandOrigin = "ui"
-base = "/Users/jacquesgautreau/.openclaw/workspace/jac-site"
 command = "npm run build"
 
 [build.environment]
