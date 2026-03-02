@@ -1,0 +1,519 @@
+---
+interface Props {
+  title: string;
+  lang?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const { 
+  title, 
+  lang = 'en',
+  description = lang === 'fr' 
+    ? "Jac Gautreau — Directeur artistique, créateur acadien et producteur d'événements du Nouveau-Brunswick. Musique, médias interactifs, production culturelle bilingue."
+    : "Jac Gautreau — Artistic director, event producer, and Acadian content creator from New Brunswick. Music, interactive media, and bilingual cultural production.",
+  image = '/images/jac-headshot.jpg',
+  type = 'website'
+} = Astro.props;
+
+const siteUrl = 'https://jac-gautreau.netlify.app';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL(image, siteUrl).toString();
+
+// JSON-LD Structured Data for Person
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jac Gautreau",
+  "url": siteUrl,
+  "image": `${siteUrl}/images/jac-headshot.jpg`,
+  "jobTitle": ["Artistic Director", "Creative Director", "Event Producer", "Content Creator", "Music Producer", "Digital Creator", "Directeur artistique", "Créateur acadien", "Artiste acadien"],
+  "description": "Jac Gautreau — Artistic director, event producer, and content creator from Acadia, New Brunswick. Bilingual creative working in music, interactive media, and cultural production across Atlantic Canada.",
+  "email": "jac@jacgautreau.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Moncton",
+    "addressRegion": "New Brunswick",
+    "addressCountry": "CA"
+  },
+  "hasOccupation": [
+    { "@type": "Occupation", "name": "Artistic Director" },
+    { "@type": "Occupation", "name": "Event Producer" },
+    { "@type": "Occupation", "name": "Content Creator" },
+    { "@type": "Occupation", "name": "Music Producer" }
+  ],
+  "sameAs": [
+    "https://x.com/gautjac",
+    "https://linkedin.com/in/jac-gautreau-1767a7367",
+    "https://instagram.com/gautjac"
+  ],
+  "knowsAbout": ["Creative Direction", "Artistic Direction", "Event Production", "Content Creation", "Music Production", "Songwriting", "Interactive Media", "Documentary Production", "Acadian Culture", "Bilingual Media"],
+  "knowsLanguage": ["French", "English"],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Portamento Production"
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Université de Moncton"
+  }
+};
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Jac Gautreau" />
+    <meta name="keywords" content="Jac Gautreau, artistic director, event producer, content creator, creative director, artiste acadien, créateur acadien, directeur artistique, Acadian artist, New Brunswick, Atlantic Canada, music producer, bilingual creator" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Language alternates -->
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${Astro.url.pathname.replace('/fr', '')}`} />
+    <link rel="alternate" hreflang="fr" href={`${siteUrl}/fr${Astro.url.pathname.replace('/fr', '')}`} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Jac Gautreau" />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_CA' : 'en_CA'} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:creator" content="@gautjac" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    
+    <!-- Calendly popup script -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- Netlify Identity (for CMS login redirect) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body class="bg-dark text-white font-sans antialiased">
+    <!-- Language Selection Modal -->
+    <div id="lang-modal" class="fixed inset-0 z-[100] flex items-center justify-center modal-backdrop opacity-0 pointer-events-none transition-opacity duration-500">
+      <div class="modal-content border rounded-2xl p-8 md:p-12 max-w-md mx-4 text-center transform scale-95 transition-transform duration-500" id="lang-modal-content">
+        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-black mb-2">Welcome<span class="text-accent">.</span> Bienvenue<span class="text-accent">.</span></h2>
+        <p class="text-gray-400 mb-8">Choose your language / Choisissez votre langue</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button id="lang-en" class="px-8 py-4 bg-accent text-dark font-bold text-lg rounded-lg hover:bg-white hover:scale-105 transition-all duration-300">
+            English
+          </button>
+          <button id="lang-fr" class="px-8 py-4 border-2 border-accent text-accent font-bold text-lg rounded-lg hover:bg-accent hover:text-dark hover:scale-105 transition-all duration-300">
+            Français
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <slot />
+    
+    <!-- Netlify Identity redirect after login -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user: any) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+    
+    <!-- Language modal script -->
+    <script>
+      (function() {
+        const modal = document.getElementById('lang-modal');
+        const modalContent = document.getElementById('lang-modal-content');
+        const langEn = document.getElementById('lang-en');
+        const langFr = document.getElementById('lang-fr');
+        
+        // Check if user has already chosen a language
+        const hasChosen = localStorage.getItem('lang-chosen');
+        const currentPath = window.location.pathname;
+        
+        // Show modal only if: no choice made yet AND on root pages (not resume)
+        if (!hasChosen && (currentPath === '/' || currentPath === '/fr' || currentPath === '/fr/')) {
+          // Show modal with animation
+          setTimeout(() => {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+          }, 500);
+        }
+        
+        function closeModal() {
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          modal.classList.remove('opacity-100');
+          modalContent.classList.add('scale-95');
+          modalContent.classList.remove('scale-100');
+        }
+        
+        langEn?.addEventListener('click', () => {
+          localStorage.setItem('lang-chosen', 'en');
+          closeModal();
+          if (currentPath.startsWith('/fr')) {
+            window.location.href = '/';
+          }
+        });
+        
+        langFr?.addEventListener('click', () => {
+          localStorage.setItem('lang-chosen', 'fr');
+          closeModal();
+          if (!currentPath.startsWith('/fr')) {
+            window.location.href = '/fr';
+          }
+        });
+      })();
+    </script>
+    
+    <!-- Scroll animation observer -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+        
+        document.querySelectorAll('.reveal').forEach((el) => {
+          observer.observe(el);
+        });
+        
+        // Stagger children
+        document.querySelectorAll('.stagger-children').forEach((parent) => {
+          const children = parent.querySelectorAll('.stagger-item');
+          children.forEach((child, i) => {
+            (child as HTMLElement).style.transitionDelay = `${i * 100}ms`;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Theme color variables */
+  :root {
+    /* Dark theme (default) */
+    --color-bg: #0a0a0a;
+    --color-bg-darker: #050505;
+    --color-surface: #141414;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #a1a1a1;
+    --color-text-muted: #6b6b6b;
+    --color-accent: #E6B325;
+    --color-accent-hover: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-nav-bg: rgba(10, 10, 10, 0.9);
+    --scrollbar-track: #0a0a0a;
+    --scrollbar-thumb: #333;
+  }
+  
+  /* Light theme */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --color-bg: #ffffff;
+      --color-bg-darker: #e8e8e8;
+      --color-surface: #ffffff;
+      --color-text-primary: #111111;
+      --color-text-secondary: #444444;
+      --color-text-muted: #666666;
+      --color-accent: #996B00;
+      --color-accent-hover: #111111;
+      --color-border: rgba(0, 0, 0, 0.15);
+      --color-nav-bg: rgba(255, 255, 255, 0.95);
+      --scrollbar-track: #ffffff;
+      --scrollbar-thumb: #aaaaaa;
+    }
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    color-scheme: light dark;
+  }
+  
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+
+  /* Entry animations */
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeSlideRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-slide-up {
+    animation: fadeSlideUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-slide-right {
+    animation: fadeSlideRight 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-800 { animation-delay: 0.8s; }
+
+  /* Scroll reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .reveal-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Stagger items */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .stagger-children.revealed .stagger-item,
+  .revealed .stagger-children .stagger-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(230, 179, 37, 0.15);
+  }
+  
+  /* Animated underline */
+  .animated-underline {
+    position: relative;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #E6B325;
+    transition: width 0.3s ease-out;
+  }
+  
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Glowing accent */
+  .glow-accent {
+    transition: text-shadow 0.3s ease-out;
+  }
+  
+  .glow-accent:hover {
+    text-shadow: 0 0 20px rgba(230, 179, 37, 0.5);
+  }
+
+  /* Pulse animation for accents */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Line draw animation */
+  @keyframes drawLine {
+    from { width: 0; }
+    to { width: 32px; }
+  }
+  
+  .animate-draw-line {
+    animation: drawLine 0.8s ease-out forwards;
+  }
+  
+  /* Modal theming */
+  .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .modal-content {
+    background-color: var(--color-bg-darker);
+    border-color: var(--color-border);
+  }
+  
+  @media (prefers-color-scheme: light) {
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+      background-color: #ffffff;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+  }
+</style>

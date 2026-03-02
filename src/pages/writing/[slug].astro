@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import content from '../../content/en.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => data.lang === 'en');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace('en/', '').replace('.md', '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const slug = post.id.replace('en/', '').replace('.md', '');
+---
+
+<Layout
+  title={`${post.data.title} — Jac Gautreau`}
+  lang="en"
+  description={post.data.excerpt}
+  image={post.data.coverImage}
+  type="article"
+>
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-bg backdrop-blur-sm border-b border-themed">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold tracking-tight hover:text-accent transition-colors">JG<span class="text-accent">.</span></a>
+      <div class="flex items-center gap-8">
+        <div class="hidden md:flex gap-6 text-sm">
+          <a href="/#about" class="text-text-secondary hover:text-accent transition-colors">{content.nav.about}</a>
+          <a href="/#work" class="text-text-secondary hover:text-accent transition-colors">{content.nav.work}</a>
+          <a href="/#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
+          <a href="/writing" class="text-accent transition-colors">{content.nav.writing}</a>
+          <a href="/#contact" class="text-text-secondary hover:text-accent transition-colors">{content.nav.contact}</a>
+        </div>
+        <a href="/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">Resume</a>
+        <a href="/fr/writing/{slug}" class="px-3 py-1 border border-themed-strong rounded text-sm text-text-secondary hover:border-accent hover:text-accent transition-colors">FR</a>
+      </div>
+    </div>
+  </nav>
+  <main class="max-w-2xl mx-auto px-6 pt-32 pb-20">
+
+    <div class="mb-12">
+      <a href="/writing" class="text-gray-500 hover:text-accent transition-colors text-sm">← Writing</a>
+    </div>
+
+    <header class="mb-12">
+      <time class="text-gray-500 text-sm">
+        {post.data.date.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Moncton' })}
+      </time>
+      <h1 class="text-3xl md:text-4xl font-bold mt-3 leading-tight text-text-primary">{post.data.title}</h1>
+      {post.data.tags.length > 0 && (
+        <div class="flex gap-2 mt-4 flex-wrap">
+          {post.data.tags.map((tag) => (
+            <span class="text-xs text-gray-500 bg-darker px-2 py-1 rounded">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {post.data.coverImage && (
+      <img src={post.data.coverImage} alt={post.data.title} class="w-full rounded-lg mb-12" />
+    )}
+
+    <div class="prose prose-lg max-w-none
+      prose-headings:font-semibold
+      prose-p:text-text-secondary prose-p:leading-relaxed
+      prose-headings:text-text-primary
+      prose-strong:text-text-primary
+      prose-li:text-text-secondary
+      prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+      prose-hr:border-white/10
+      prose-code:text-accent">
+      <Content />
+    </div>
+
+    <footer class="mt-16 pt-8 border-t border-white/10">
+      <div class="flex flex-wrap gap-4 items-center justify-between">
+        <a href="/writing" class="text-gray-500 hover:text-accent transition-colors text-sm">← All writing</a>
+        {post.data.linkedinUrl && (
+          <a href={post.data.linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-accent transition-colors text-sm">
+            View on LinkedIn ↗
+          </a>
+        )}
+      </div>
+      <div class="mt-8">
+        <a href={`/fr/writing/${slug}`} class="text-gray-600 hover:text-gray-400 transition-colors text-sm">Lire en français →</a>
+      </div>
+    </footer>
+
+  </main>
+</Layout>

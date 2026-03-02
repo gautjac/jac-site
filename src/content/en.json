@@ -1,0 +1,314 @@
+{
+  "lang": "en",
+  "langLabel": "EN",
+  "otherLang": "fr",
+  "otherLangLabel": "FR",
+  "otherLangUrl": "/fr",
+  
+  "nav": {
+    "about": "About",
+    "work": "Work",
+    "projects": "Projects",
+    "writing": "Writing",
+    "contact": "Contact"
+  },
+  
+  "hero": {
+    "name": "Jac Gautreau",
+    "tagline": ["Words", "Music", "Ideas", "Interaction"],
+    "subtitle": "Creative, Curious, Competent"
+  },
+  
+  "about": {
+    "title": "About",
+    "content": [
+      "I'm an artistic director, event producer, and content creator from Acadia, New Brunswick. For over two decades I've worked across music, interactive media, documentary, and live events — always as the person who holds the creative vision and gets it made.",
+      "I live a bicultural life, not just bilingual. As an Acadian creator, I contribute equally to English and French worlds, sometimes writing in Chiac — the beautiful hybrid tongue where Shakespeare and Molière collide. My work reflects that: produced for NFB, Radio-Canada, CBC, and cultural institutions across Atlantic Canada.",
+      "I define success by how much I'm learning, how much I'm creating, and how curious life keeps me. Lately that curiosity has turned toward AI — I build tools that didn't exist six months ago, and I use them to make the work more interesting, not less human."
+    ],
+    "cta": "Download CV"
+  },
+  
+  "work": {
+    "title": "What I Do",
+    "items": [
+      {
+        "number": "01",
+        "title": "Creative Direction",
+        "description": "Guiding vision from concept to completion. Making sure every piece serves the whole."
+      },
+      {
+        "number": "02",
+        "title": "Songwriting & Composition",
+        "description": "Matching words and music. The craft of making lyric and melody work together."
+      },
+      {
+        "number": "03",
+        "title": "Creative Writing",
+        "description": "Poetry, prose, and everything between. Building the scene, then letting it fly."
+      },
+      {
+        "number": "04",
+        "title": "Custom Interactive Apps",
+        "description": "Turning ideas into tools. Vibecoding — building through intuition and AI."
+      },
+      {
+        "number": "05",
+        "title": "Creative AI Workflows",
+        "description": "Designing systems where human creativity and AI work together. Automating the tedious, amplifying the inspired."
+      }
+    ]
+  },
+  
+  "projects": {
+    "title": "Selected Works",
+    "viewAll": "View All Works",
+    "items": [
+      {
+        "title": "Acadictionnaire",
+        "description": "A theatrical primer on l'Acadie for the Pays de la Sagouine",
+        "category": "Theatre / Cultural",
+        "images": ["/images/acadictionnaire.jpg", "/images/acadictionnaire-2.jpg", "/images/acadictionnaire-3.jpg"]
+      },
+      {
+        "title": "Tracadie Story",
+        "description": "Large-scale projection meets hyper-local musical",
+        "category": "Multimedia / Music",
+        "images": ["/images/tracadie-1.jpg", "/images/tracadie-2.jpg", "/images/tracadie-3.jpg"]
+      },
+      {
+        "title": "Ocean School",
+        "description": "Cutting-edge educational media",
+        "category": "Education / Digital",
+        "images": ["/images/ocean-school-1.jpg", "/images/ocean-school-2.jpg"]
+      },
+      {
+        "title": "AR Whale",
+        "description": "A Blue whale comes to life",
+        "category": "AR / Interactive",
+        "images": ["/images/ar-whale.jpg"]
+      }
+    ]
+  },
+  
+  "explorations": {
+    "title": "Digital Explorations",
+    "subtitle": "Apps and tools I'm building",
+    "items": [
+      {
+        "title": "Podcast Summaries",
+        "description": "AI-generated deep summaries with personalized insights and audio narration. Built with Astro, local LLM transcription, and custom TTS.",
+        "category": "AI / Productivity",
+        "url": "https://podcast-summaries.netlify.app",
+        "images": ["/images/podcast-summaries-1.jpg", "/images/podcast-summaries-2.jpg"]
+      }
+    ]
+  },
+  
+  "contact": {
+    "title": "Let's Talk",
+    "content": "Curious about working together? I'm always open to interesting conversations.",
+    "email": "Email",
+    "location": "Atlantic Canada"
+  },
+  
+  "footer": {
+    "copyright": "© 2026 Jac Gautreau. All rights reserved.",
+    "madeWith": "Built with curiosity and Charlotte 🕷️"
+  },
+  
+  "resume": {
+    "title": "Resume",
+    "downloadPdf": "Download PDF",
+    "backToSite": "Back to Site",
+    "sections": {
+      "experience": {
+        "title": "Experience",
+        "items": [
+          {
+            "role": "Director of Education",
+            "organization": "National Film Board of Canada",
+            "period": "2024–2025"
+          },
+          {
+            "role": "Director — Executive Producer",
+            "organization": "Ocean School — National Film Board of Canada",
+            "period": "2017–2025"
+          },
+          {
+            "role": "Producer",
+            "organization": "National Film Board of Canada — Acadie Studio",
+            "period": "2015–2017"
+          },
+          {
+            "role": "Digital Creator & Artistic Director",
+            "organization": "Portamento Production",
+            "context": "Documentary scoring, copy and jingle writing, event production, artistic direction",
+            "period": "2003–Present"
+          },
+          {
+            "role": "Producer",
+            "organization": "East Coast Music Awards",
+            "context": "Nationally televised live awards show",
+            "period": "1997–2009"
+          },
+          {
+            "role": "Owner-Operator",
+            "organization": "Studio Staccato",
+            "context": "Produced over 30 albums, over 40 documentary scores and sound edits",
+            "period": "1993–2003"
+          }
+        ]
+      },
+      "education": {
+        "title": "Education",
+        "items": [
+          {
+            "degree": "Arts",
+            "institution": "Université de Moncton",
+            "period": "1981–1985"
+          }
+        ]
+      },
+      "skills": {
+        "title": "Skills",
+        "content": "As a technological creator, Jac has designed innovative content at the intersection of art, storytelling, and technology."
+      },
+      "highlights": {
+        "title": "Highlights",
+        "items": [
+          {
+            "project": "Acadictionnaire",
+            "context": "Pays de la Sagouine",
+            "year": "2025",
+            "roles": ["Writing", "Directing", "Video Scenography", "Songs"]
+          },
+          {
+            "project": "Ocean School",
+            "url": "https://ecoledelocean.ca/",
+            "year": "2017–2025",
+            "roles": ["Executive Producer"]
+          },
+          {
+            "project": "Akadi Lumina",
+            "url": "https://akadilumina.ca/en/",
+            "context": "Moment Factory",
+            "year": "2023",
+            "roles": ["Artistic Advisor"]
+          },
+          {
+            "project": "Le JacShow",
+            "url": "https://www.youtube.com/@lejacshow86?app=desktop",
+            "context": "Arts-focused talk show for Bell Media — 2 seasons",
+            "year": "2015–2017",
+            "roles": ["Producer", "Host", "Musician"]
+          },
+          {
+            "project": "NFB Productions",
+            "linkedProjects": [
+              {"name": "Uniquely Viola", "url": "https://www.nfb.ca/film/uniquely_viola/"},
+              {"name": "The 3rd Wheel", "url": "https://collection.nfb.ca/interactive/third_wheel"},
+              {"name": "The Artisans", "url": "https://www.nfb.ca/film/artisans/"}
+            ],
+            "year": "2015–2016",
+            "roles": ["Producer"]
+          },
+          {
+            "project": "Fête Nationale Show",
+            "context": "Nationally televised live concert",
+            "year": "2017, 2023",
+            "roles": ["Co-Artistic Director"]
+          },
+          {
+            "project": "Pomodoro Poems",
+            "url": "https://instagram.com/gautjac",
+            "context": "One year of daily poems alternating between French and English",
+            "year": "2020–2021",
+            "roles": ["Writer", "Creator"]
+          },
+          {
+            "project": "Congrès mondial acadien",
+            "year": "2009, 2014, 2019",
+            "roles": ["Artistic Director"]
+          },
+          {
+            "project": "Les Éloizes",
+            "url": "https://aaapnb.ca/fr/eloizes",
+            "context": "Televised award show celebrating Acadian art",
+            "year": "2012, 2016",
+            "roles": ["Artistic Director"]
+          },
+          {
+            "project": "Tracadie Story 1, 2, 3D",
+            "year": "2011–2013",
+            "roles": ["Producer", "Artistic Director", "Composer"]
+          },
+          {
+            "project": "Le violon fantastique",
+            "year": "2009",
+            "roles": ["Artistic Director", "Producer"]
+          },
+          {
+            "project": "La Francoforce",
+            "context": "National tour presenting francophone content in 13 Canadian cities in a 70' geodesic dome",
+            "year": "2008",
+            "roles": ["Producer", "Artistic Director"]
+          }
+        ]
+      },
+      "awards": {
+        "title": "Awards",
+        "items": [
+          {
+            "award": "Japan Prize for Media",
+            "project": "Ocean School",
+            "result": "Finalist",
+            "year": "2019"
+          },
+          {
+            "award": "Webby Award",
+            "project": "Ocean School",
+            "result": "Nomination",
+            "year": "2018"
+          },
+          {
+            "award": "Gemini Awards — Best Variety Show",
+            "project": "East Coast Music Awards",
+            "result": "Winner",
+            "year": "2003, 2004"
+          },
+          {
+            "award": "Prix Éloize — Arts Support",
+            "result": "Winner",
+            "year": "1999"
+          }
+        ]
+      },
+      "leadership": {
+        "title": "Leadership & Board Roles",
+        "items": [
+          {
+            "role": "Member",
+            "organization": "Cultural Board — City of Moncton",
+            "period": "2025–Present"
+          },
+          {
+            "role": "Vice-President",
+            "organization": "Association Acadienne des Artistes professionel.le.s du Nouveau-Brunswick",
+            "period": "2005–2007"
+          },
+          {
+            "role": "President",
+            "organization": "Association Acadienne des Artistes professionel.le.s du Nouveau-Brunswick",
+            "period": "1996–1998"
+          },
+          {
+            "role": "Member, Board of Directors",
+            "organization": "East Coast Music Association",
+            "period": "1992–1996"
+          }
+        ]
+      }
+    }
+  }
+}

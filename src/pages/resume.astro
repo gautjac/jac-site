@@ -1,0 +1,375 @@
+---
+import Layout from '../layouts/Layout.astro';
+import content from '../content/en.json';
+
+const { resume } = content;
+const { sections } = resume;
+---
+
+<Layout title="Resume — Jac Gautreau" lang="en">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-bg backdrop-blur-sm border-b border-themed no-print">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold tracking-tight hover:text-accent transition-colors">JG<span class="text-accent">.</span></a>
+      <div class="flex items-center gap-4">
+        <button id="download-pdf" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          PDF
+        </button>
+        <a href="/" class="text-sm hover:text-accent transition-colors">{resume.backToSite}</a>
+        <a href="/fr/resume" class="px-3 py-1 border border-themed-strong rounded text-sm hover:border-accent hover:text-accent transition-colors">
+          FR
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-20 px-6">
+    <div id="resume-content" class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <header class="mb-16 text-center reveal">
+        <h1 class="text-5xl md:text-6xl font-black mb-4">
+          Jac Gautreau<span class="text-accent glow-accent">.</span>
+        </h1>
+        <p class="text-xl text-gray-400 mb-6">Creative Director · Producer · Digital Creator</p>
+        <div class="flex justify-center gap-4 text-sm text-gray-500">
+          <span>Atlantic Canada</span>
+          <span>·</span>
+          <a href="mailto:jac@jacgautreau.com" class="hover:text-accent transition-colors">jac@jacgautreau.com</a>
+        </div>
+      </header>
+
+      <!-- Experience -->
+      <section class="mb-16 reveal">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-accent animate-draw-line"></span>
+          {sections.experience.title}
+        </h2>
+        <div class="space-y-6 stagger-children">
+          {sections.experience.items.map((item: { role: string; organization: string; period: string; context?: string }) => (
+            <div class="stagger-item grid md:grid-cols-12 gap-2 md:gap-6 group hover:pl-2 transition-all duration-300">
+              <div class="md:col-span-3 text-accent text-sm font-mono">{item.period}</div>
+              <div class="md:col-span-9">
+                <h3 class="font-bold group-hover:text-accent transition-colors">{item.role}</h3>
+                <p class="text-gray-400">{item.organization}</p>
+                {item.context && <p class="text-gray-500 text-sm mt-1">{item.context}</p>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="mb-16 reveal">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-accent animate-draw-line"></span>
+          {sections.education.title}
+        </h2>
+        <div class="space-y-6">
+          {sections.education.items.map((item: { degree: string; institution: string; period: string }) => (
+            <div class="grid md:grid-cols-12 gap-2 md:gap-6 group">
+              <div class="md:col-span-3 text-accent text-sm font-mono">{item.period}</div>
+              <div class="md:col-span-9">
+                <h3 class="font-bold group-hover:text-accent transition-colors">{item.degree}</h3>
+                <p class="text-gray-400">{item.institution}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="mb-16 reveal">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-accent animate-draw-line"></span>
+          {sections.skills.title}
+        </h2>
+        <p class="text-gray-300 leading-relaxed max-w-2xl">{sections.skills.content}</p>
+      </section>
+
+      <!-- Highlights -->
+      <section class="mb-16 reveal">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-accent animate-draw-line"></span>
+          {sections.highlights.title}
+        </h2>
+        <div class="space-y-6 stagger-children">
+          {sections.highlights.items.map((item: { project: string; context?: string; url?: string; year: string; roles: string[]; linkedProjects?: {name: string; url?: string}[] }) => (
+            <div class="stagger-item grid md:grid-cols-12 gap-2 md:gap-6 group hover:pl-2 transition-all duration-300">
+              <div class="md:col-span-3 text-accent text-sm font-mono">{item.year}</div>
+              <div class="md:col-span-9">
+                <h3 class="font-bold group-hover:text-accent transition-colors">
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                      {item.project} ↗
+                    </a>
+                  ) : (
+                    item.project
+                  )}
+                </h3>
+                {item.context && <p class="text-gray-500 text-sm">{item.context}</p>}
+                {item.linkedProjects && (
+                  <p class="text-gray-500 text-sm">
+                    {item.linkedProjects.map((proj: {name: string; url?: string}, i: number) => (
+                      <>
+                        {proj.url ? (
+                          <a href={proj.url} target="_blank" rel="noopener noreferrer" class="hover:text-accent hover:underline">{proj.name}</a>
+                        ) : (
+                          <span>{proj.name}</span>
+                        )}
+                        {i < item.linkedProjects!.length - 1 && ', '}
+                      </>
+                    ))}
+                  </p>
+                )}
+                <p class="text-gray-400 text-sm">{item.roles.join(' · ')}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section class="mb-16 reveal">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-accent animate-draw-line"></span>
+          {sections.awards.title}
+        </h2>
+        <div class="space-y-6 stagger-children">
+          {sections.awards.items.map((item: { award: string; project?: string; result: string; year: string }) => (
+            <div class="stagger-item grid md:grid-cols-12 gap-2 md:gap-6 group hover:pl-2 transition-all duration-300">
+              <div class="md:col-span-3 text-accent text-sm font-mono">{item.year}</div>
+              <div class="md:col-span-9">
+                <h3 class="font-bold group-hover:text-accent transition-colors">{item.award}</h3>
+                <p class="text-gray-400 text-sm">
+                  {item.project && <span>{item.project} · </span>}
+                  <span class="text-accent">{item.result}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Leadership & Board Roles -->
+      <section class="mb-16 reveal">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-accent animate-draw-line"></span>
+          {sections.leadership.title}
+        </h2>
+        <div class="space-y-6 stagger-children">
+          {sections.leadership.items.map((item: { role: string; organization: string; period: string }) => (
+            <div class="stagger-item grid md:grid-cols-12 gap-2 md:gap-6 group hover:pl-2 transition-all duration-300">
+              <div class="md:col-span-3 text-accent text-sm font-mono">{item.period}</div>
+              <div class="md:col-span-9">
+                <h3 class="font-bold group-hover:text-accent transition-colors">{item.role}</h3>
+                <p class="text-gray-400">{item.organization}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Contact CTA -->
+      <section class="text-center pt-8 border-t border-white/10 reveal">
+        <p class="text-gray-400 mb-6">Interested in working together?</p>
+        <div class="flex justify-center gap-4">
+          <a href="mailto:jac@jacgautreau.com" class="px-8 py-3 bg-accent text-dark font-semibold rounded hover:bg-white transition-colors">
+            Get in Touch
+          </a>
+          <a href="/" class="px-8 py-3 border border-white/20 rounded hover:border-accent hover:text-accent transition-colors">
+            View Portfolio
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-white/5 no-print">
+    <div class="max-w-4xl mx-auto text-center text-sm text-gray-500">
+      <p>{content.footer.copyright}</p>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  document.getElementById('download-pdf')?.addEventListener('click', () => {
+    window.print();
+  });
+</script>
+
+<style>
+  /* Print styles for clean PDF output */
+  @media print {
+    /* Hide non-essential elements */
+    nav, footer, .no-print {
+      display: none !important;
+    }
+    
+    /* Reset body for print */
+    html, body {
+      background: white !important;
+      color: #1a1a1a !important;
+      font-size: 11pt !important;
+      line-height: 1.4 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    
+    /* Main content adjustments */
+    main {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    
+    #resume-content {
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+    
+    /* Header adjustments */
+    header {
+      margin-bottom: 24pt !important;
+      text-align: center;
+    }
+    
+    header h1 {
+      font-size: 24pt !important;
+      margin-bottom: 6pt !important;
+      color: #1a1a1a !important;
+    }
+    
+    header p {
+      font-size: 11pt !important;
+      color: #444 !important;
+    }
+    
+    /* Section headings */
+    section h2 {
+      font-size: 14pt !important;
+      margin-bottom: 12pt !important;
+      color: #1a1a1a !important;
+      border-bottom: 1px solid #B8860B !important;
+      padding-bottom: 4pt !important;
+    }
+    
+    /* Hide decorative line animation */
+    section h2 span.w-8 {
+      display: none !important;
+    }
+    
+    /* Section spacing */
+    section {
+      margin-bottom: 20pt !important;
+      page-break-inside: avoid;
+    }
+    
+    /* Entry items */
+    .space-y-6 > div {
+      margin-bottom: 8pt !important;
+      page-break-inside: avoid;
+    }
+    
+    /* Period/date styling */
+    .text-accent {
+      color: #B8860B !important;
+    }
+    
+    .font-mono {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 9pt !important;
+    }
+    
+    /* Text colors for print */
+    .text-gray-400, .text-gray-500 {
+      color: #555 !important;
+    }
+    
+    h3 {
+      font-size: 11pt !important;
+      font-weight: 600 !important;
+      color: #1a1a1a !important;
+    }
+    
+    /* Remove hover effects and transitions */
+    * {
+      transition: none !important;
+      transform: none !important;
+    }
+    
+    /* Ensure animations don't affect print */
+    .reveal, .stagger-item {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    
+    /* Hide CTA section */
+    section.text-center.pt-8 {
+      display: none !important;
+    }
+    
+    /* Links - show URL or just text */
+    a {
+      color: #1a1a1a !important;
+      text-decoration: none !important;
+    }
+    
+    a[href^="http"]::after {
+      content: none !important;
+    }
+    
+    /* Grid layout for print */
+    .grid {
+      display: flex !important;
+      gap: 12pt !important;
+    }
+    
+    .md\\:col-span-3 {
+      flex: 0 0 80pt !important;
+    }
+    
+    .md\\:col-span-9 {
+      flex: 1 !important;
+    }
+    
+    /* Accent glow - just show as gold */
+    .glow-accent {
+      color: #B8860B !important;
+      text-shadow: none !important;
+    }
+    
+    /* Page settings */
+    @page {
+      margin: 0.75in;
+      size: letter;
+    }
+  }
+  
+  /* Theme-aware utilities */
+  .nav-bg {
+    background-color: var(--color-nav-bg);
+  }
+  
+  .border-themed {
+    border-color: var(--color-border);
+  }
+  
+  .border-themed-strong {
+    border-color: rgba(128, 128, 128, 0.3);
+  }
+  
+  /* Light mode overrides */
+  @media (prefers-color-scheme: light) {
+    .text-gray-400 {
+      color: #444 !important;
+    }
+    .text-gray-500 {
+      color: #555 !important;
+    }
+    
+    .border-white\/10 {
+      border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+</style>

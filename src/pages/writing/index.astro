@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import content from '../../content/en.json';
+
+const posts = (await getCollection('posts', ({ data }) => data.lang === 'en'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Writing — Jac Gautreau" lang="en" description="Writing, ideas, and observations from Jac Gautreau — creative director, musician, and builder from Atlantic Canada.">
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-bg backdrop-blur-sm border-b border-themed">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold tracking-tight hover:text-accent transition-colors">JG<span class="text-accent">.</span></a>
+      <div class="flex items-center gap-8">
+        <div class="hidden md:flex gap-6 text-sm">
+          <a href="/#about" class="text-text-secondary hover:text-accent transition-colors">{content.nav.about}</a>
+          <a href="/#work" class="text-text-secondary hover:text-accent transition-colors">{content.nav.work}</a>
+          <a href="/#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
+          <a href="/writing" class="text-accent transition-colors">{content.nav.writing}</a>
+          <a href="/#contact" class="text-text-secondary hover:text-accent transition-colors">{content.nav.contact}</a>
+        </div>
+        <a href="/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">Resume</a>
+        <a href="/fr/writing" class="px-3 py-1 border border-themed-strong rounded text-sm text-text-secondary hover:border-accent hover:text-accent transition-colors">FR</a>
+      </div>
+    </div>
+  </nav>
+  <main class="max-w-3xl mx-auto px-6 pt-32 pb-20">
+
+    <h1 class="text-4xl font-bold mb-4 text-text-primary">Writing</h1>
+    <p class="text-gray-400 text-lg mb-16">Ideas, process notes, and observations. Same things I post on LinkedIn — but yours to keep.</p>
+
+    <div class="space-y-12">
+      {posts.map((post) => {
+        const slug = post.id.replace('en/', '').replace('.md', '');
+        return (
+          <article class="group border-b border-white/10 pb-12 last:border-0">
+            {post.data.coverImage && (
+              <a href={`/writing/${slug}`} class="block mb-4 overflow-hidden rounded-lg">
+                <img src={post.data.coverImage} alt={post.data.title} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
+              </a>
+            )}
+            <time class="text-gray-500 text-sm">
+              {post.data.date.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Moncton' })}
+            </time>
+            <h2 class="text-2xl font-semibold mt-2 mb-3 text-text-primary group-hover:text-accent transition-colors">
+              <a href={`/writing/${slug}`}>{post.data.title}</a>
+            </h2>
+            <p class="text-gray-400 leading-relaxed mb-4">{post.data.excerpt}</p>
+            <div class="flex items-center gap-4 flex-wrap">
+              <a href={`/writing/${slug}`} class="text-sm text-text-primary border border-white/20 px-4 py-1.5 rounded-full hover:border-accent hover:text-accent transition-colors">
+                Read →
+              </a>
+              {post.data.tags.map((tag) => (
+                <span class="text-xs text-gray-500 bg-darker px-2 py-1 rounded">{tag}</span>
+              ))}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+  </main>
+</Layout>

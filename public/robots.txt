@@ -1,0 +1,7 @@
+# robots.txt for jac-gautreau.netlify.app
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jac-gautreau.netlify.app/sitemap-index.xml
