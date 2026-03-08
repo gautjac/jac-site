@@ -2,21 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import content from '../content/en.json';
 
-const highlights = [
-  {
-    title: 'Stage & Storytelling',
-    description: 'Songs, reprises, and underscoring written for productions like Acadictionnaire and Tracadie Story — pieces designed to move bilingual audiences through a full evening.'
-  },
-  {
-    title: 'Film & Documentary Scores',
-    description: 'Themes and cues created for NFB and Ocean School projects, where the job was to underline curiosity, tension, and awe without ever getting in the way of the story.'
-  },
-  {
-    title: 'Experiments & Sketches',
-    description: 'Ideas captured on the Expressive E Osmose, lyric sketches, and little sonic postcards that never quite fit anywhere else — the kinds of pieces I keep revisiting.'
-  }
-];
-
 const soundcloudEmbed = 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jacg/sets/spin-jac-gautreau&color=%23E6B325&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true';
 ---
 
@@ -70,18 +55,6 @@ const soundcloudEmbed = 'https://w.soundcloud.com/player/?url=https%3A//soundclo
         <a href="https://soundcloud.com/jacg" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-accent hover:underline">
           Follow on SoundCloud ↗
         </a>
-      </div>
-    </section>
-
-    <section class="space-y-8">
-      <h2 class="text-3xl font-bold text-text-primary">What you\'ll hear<span class="text-accent">.</span></h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        {highlights.map((item) => (
-          <div class="bg-dark border border-white/10 rounded-xl p-6 hover:border-accent/50 hover:translate-y-[-4px] transition-all duration-300">
-            <h3 class="text-xl font-semibold text-text-primary mb-3">{item.title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">{item.description}</p>
-          </div>
-        ))}
       </div>
     </section>
 

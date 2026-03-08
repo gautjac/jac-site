@@ -2,21 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import content from '../../content/fr.json';
 
-const highlights = [
-  {
-    title: 'Scène et narration',
-    description: 'Chansons, refrains et trames écrites pour des productions comme Acadictionnaire et Tracadie Story — des pièces pensées pour porter un public bilingue toute une soirée.'
-  },
-  {
-    title: 'Cinéma et documentaire',
-    description: 'Thèmes et ambiances composés pour l\'ONF et Ocean School, où la musique doit soutenir la curiosité, la tension et l\'émerveillement sans voler la vedette.'
-  },
-  {
-    title: 'Esquisses et essais',
-    description: 'Idées captées sur l\'Expressive E Osmose, fragments de paroles et petits polaroïds sonores qui reviennent souvent dans mon carnet.'
-  }
-];
-
 const soundcloudEmbed = 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jacg/sets/spin-jac-gautreau&color=%23E6B325&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true';
 ---
 
@@ -70,18 +55,6 @@ const soundcloudEmbed = 'https://w.soundcloud.com/player/?url=https%3A//soundclo
         <a href="https://soundcloud.com/jacg" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-accent hover:underline">
           Suivre sur SoundCloud ↗
         </a>
-      </div>
-    </section>
-
-    <section class="space-y-8">
-      <h2 class="text-3xl font-bold text-text-primary">Ce que vous entendrez<span class="text-accent">.</span></h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        {highlights.map((item) => (
-          <div class="bg-dark border border-white/10 rounded-xl p-6 hover:border-accent/50 hover:translate-y-[-4px] transition-all duration-300">
-            <h3 class="text-xl font-semibold text-text-primary mb-3">{item.title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">{item.description}</p>
-          </div>
-        ))}
       </div>
     </section>
 
