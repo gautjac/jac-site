@@ -11,6 +11,7 @@ publish = "/Users/jacquesgautreau/.openclaw/workspace/jac-site/dist"
 publishOrigin = "ui"
 commandOrigin = "ui"
 command = "npm run build"
+ignore = "exit 0"
 
 [build.environment]
 

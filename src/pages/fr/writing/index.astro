@@ -17,6 +17,8 @@ const posts = (await getCollection('posts', ({ data }) => data.lang === 'fr'))
           <a href="/fr#work" class="text-text-secondary hover:text-accent transition-colors">{content.nav.work}</a>
           <a href="/fr#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
           <a href="/fr/writing" class="text-accent transition-colors">{content.nav.writing}</a>
+          <a href="/fr/musique" class="text-text-secondary hover:text-accent transition-colors">{content.nav.music}</a>
+          <a href="/fr/poems" class="text-text-secondary hover:text-accent transition-colors">Poèmes</a>
           <a href="/fr#contact" class="text-text-secondary hover:text-accent transition-colors">{content.nav.contact}</a>
         </div>
         <a href="/fr/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">CV</a>

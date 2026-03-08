@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import content from '../../content/fr.json';
+
+const highlights = [
+  {
+    title: 'Scène et narration',
+    description: 'Chansons, refrains et trames écrites pour des productions comme Acadictionnaire et Tracadie Story — des pièces pensées pour porter un public bilingue toute une soirée.'
+  },
+  {
+    title: 'Cinéma et documentaire',
+    description: 'Thèmes et ambiances composés pour l\'ONF et Ocean School, où la musique doit soutenir la curiosité, la tension et l\'émerveillement sans voler la vedette.'
+  },
+  {
+    title: 'Esquisses et essais',
+    description: 'Idées captées sur l\'Expressive E Osmose, fragments de paroles et petits polaroïds sonores qui reviennent souvent dans mon carnet.'
+  }
+];
+
+const soundcloudEmbed = 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jacg/sets/spin-jac-gautreau&color=%23E6B325&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true';
+---
+
+<Layout title="Musique — Jac Gautreau" lang="fr" description="Une sélection rotative de chansons, trames et esquisses signées Jac Gautreau.">
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-bg backdrop-blur-sm border-b border-themed">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/fr" class="text-xl font-bold tracking-tight hover:text-accent transition-colors">JG<span class="text-accent">.</span></a>
+      <div class="flex items-center gap-8">
+        <div class="hidden md:flex gap-6 text-sm">
+          <a href="/fr#about" class="text-text-secondary hover:text-accent transition-colors">{content.nav.about}</a>
+          <a href="/fr#work" class="text-text-secondary hover:text-accent transition-colors">{content.nav.work}</a>
+          <a href="/fr#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
+          <a href="/fr/writing" class="text-text-secondary hover:text-accent transition-colors">{content.nav.writing}</a>
+          <a href="/fr/musique" class="text-accent transition-colors">{content.nav.music}</a>
+          <a href="/fr/poems" class="text-text-secondary hover:text-accent transition-colors">Poèmes</a>
+          <a href="/fr#contact" class="text-text-secondary hover:text-accent transition-colors">{content.nav.contact}</a>
+        </div>
+        <a href="/fr/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">CV</a>
+        <a href="/music" class="px-3 py-1 border border-themed-strong rounded text-sm text-text-secondary hover:border-accent hover:text-accent transition-colors">EN</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-6 pt-32 pb-20 space-y-16">
+    <section class="space-y-6">
+      <p class="text-accent text-sm tracking-[0.3em] uppercase">{content.nav.music}</p>
+      <h1 class="text-5xl md:text-6xl font-black text-text-primary">Musique<span class="text-accent">.</span></h1>
+      <p class="text-lg text-gray-300 leading-relaxed max-w-3xl">
+        Liste rotative de chansons, trames et esquisses accumulées au fil des années. Certaines proviennent de la scène, d\'autres de l\'Office national du film, et quelques-unes sont simplement des expériences qui refusaient de dormir sur un disque dur. Je continuerai d\'ajouter des pièces au fur et à mesure que je numérise les archives.
+      </p>
+      <p class="text-gray-400 max-w-2xl">
+        Faites jouer, laissez courir, et si quelque chose résonne, écrivez-moi — j\'adore parler de défis musicaux.
+      </p>
+    </section>
+
+    <section class="bg-dark border border-white/10 rounded-2xl shadow-2xl shadow-black/20 overflow-hidden">
+      <div class="aspect-[4/3] sm:aspect-[16/9] player-frame">
+        <iframe 
+          title="Jac Gautreau — SoundCloud"
+          scrolling="no"
+          frameborder="no"
+          allow="autoplay"
+          src={soundcloudEmbed}
+          class="w-full h-full"
+        ></iframe>
+      </div>
+      <div class="p-6 border-t border-white/5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-sm text-gray-400">
+          Playlist : SPIN — un survol entre productions scéniques, documentaires et esquisses.
+        </p>
+        <a href="https://soundcloud.com/jacg" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-accent hover:underline">
+          Suivre sur SoundCloud ↗
+        </a>
+      </div>
+    </section>
+
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold text-text-primary">Ce que vous entendrez<span class="text-accent">.</span></h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {highlights.map((item) => (
+          <div class="bg-dark border border-white/10 rounded-xl p-6 hover:border-accent/50 hover:translate-y-[-4px] transition-all duration-300">
+            <h3 class="text-xl font-semibold text-text-primary mb-3">{item.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="border border-white/10 rounded-2xl p-8 text-center">
+      <p class="text-lg text-gray-300 mb-4">Je suis en train de numériser d\'anciens masters et captations — de nouvelles pièces s\'ajouteront toutes les quelques semaines.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="mailto:jac@jacgautreau.com" class="px-8 py-3 bg-accent text-dark font-semibold rounded hover:bg-white transition-colors">Licences ou collaborations</a>
+        <a href="https://soundcloud.com/jacg/sets/spin-jac-gautreau" target="_blank" rel="noopener noreferrer" class="px-8 py-3 border border-white/20 rounded text-text-primary hover:border-accent hover:text-accent transition-colors">Ouvrir la playlist ↗</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .player-frame {
+    background: radial-gradient(circle at top, rgba(230, 179, 37, 0.15), transparent 60%);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .player-frame {
+      background: radial-gradient(circle at top, rgba(153, 107, 0, 0.15), transparent 60%);
+    }
+    .border-white\/10 {
+      border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    .border-white\/5 {
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
+  }
+</style>
