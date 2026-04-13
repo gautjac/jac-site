@@ -12,8 +12,8 @@ import content from '../../content/fr.json';
         <div class="hidden md:flex gap-6 text-sm">
           <a href="#about" class="text-text-secondary hover:text-accent transition-colors">{content.nav.about}</a>
           <a href="#work" class="text-text-secondary hover:text-accent transition-colors">{content.nav.work}</a>
-          <a href="#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
           <a href="#explorations" class="text-text-secondary hover:text-accent transition-colors">Explorations</a>
+          <a href="#projects" class="text-text-secondary hover:text-accent transition-colors">{content.nav.projects}</a>
           <a href="/fr/writing" class="text-text-secondary hover:text-accent transition-colors">{content.nav.writing}</a>
           <a href="/fr/musique" class="text-text-secondary hover:text-accent transition-colors">{content.nav.music}</a>
           <a href="/fr/poems" class="text-text-secondary hover:text-accent transition-colors">Poèmes</a>
@@ -38,8 +38,8 @@ import content from '../../content/fr.json';
     <div id="mobile-menu" class="hidden md:hidden border-t border-themed px-6 py-4 space-y-4 nav-bg">
       <a href="#about" class="block text-sm text-text-secondary hover:text-accent transition-colors mobile-nav-link">{content.nav.about}</a>
       <a href="#work" class="block text-sm text-text-secondary hover:text-accent transition-colors mobile-nav-link">{content.nav.work}</a>
-      <a href="#projects" class="block text-sm text-text-secondary hover:text-accent transition-colors mobile-nav-link">{content.nav.projects}</a>
       <a href="#explorations" class="block text-sm text-text-secondary hover:text-accent transition-colors mobile-nav-link">Explorations</a>
+      <a href="#projects" class="block text-sm text-text-secondary hover:text-accent transition-colors mobile-nav-link">{content.nav.projects}</a>
       <a href="/fr/writing" class="block text-sm text-text-secondary hover:text-accent transition-colors">{content.nav.writing}</a>
       <a href="/fr/musique" class="block text-sm text-text-secondary hover:text-accent transition-colors">{content.nav.music}</a>
       <a href="#contact" class="block text-sm text-text-secondary hover:text-accent transition-colors mobile-nav-link">{content.nav.contact}</a>
@@ -184,52 +184,6 @@ import content from '../../content/fr.json';
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-32 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-5xl md:text-6xl font-black mb-16 reveal">
-        {content.projects.title}<span class="text-accent glow-accent">.</span>
-      </h2>
-      <div class="grid md:grid-cols-2 gap-8 stagger-children reveal">
-        {content.projects.items.map((project: { title: string; description: string; category: string; image?: string; images?: string[] }, idx: number) => (
-          <div class="stagger-item group relative bg-darker rounded-lg overflow-hidden hover:ring-2 hover:ring-accent/50 transition-all duration-300 hover-lift">
-            {project.images && project.images.length > 1 ? (
-              <div class="relative aspect-video overflow-hidden" data-slider={idx}>
-                <div class="slider-track flex transition-transform duration-500 ease-out" style="width: 100%;">
-                  {project.images.map((img: string, i: number) => (
-                    <img src={img} alt={`${project.title} ${i + 1}`} class="aspect-video object-cover w-full flex-shrink-0" />
-                  ))}
-                </div>
-                <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center hover:bg-accent transition-colors" data-slider-prev={idx}>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center hover:bg-accent transition-colors" data-slider-next={idx}>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
-                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-                  {project.images.map((_: string, i: number) => (
-                    <span class={`w-2 h-2 rounded-full ${i === 0 ? 'bg-accent' : 'bg-white/30'}`} data-dot={`${idx}-${i}`}></span>
-                  ))}
-                </div>
-              </div>
-            ) : project.images && project.images.length === 1 ? (
-              <img src={project.images[0]} alt={project.title} class="aspect-video object-cover w-full" />
-            ) : project.image ? (
-              <img src={project.image} alt={project.title} class="aspect-video object-cover w-full" />
-            ) : (
-              <div class="aspect-video bg-gradient-to-br from-white/5 to-transparent"></div>
-            )}
-            <div class="p-6">
-              <span class="text-accent text-xs tracking-wider uppercase">{project.category}</span>
-              <h3 class="text-2xl font-bold mt-2 group-hover:text-accent transition-colors">{project.title}</h3>
-              <p class="text-gray-400 mt-2">{project.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Digital Explorations Section -->
   <section id="explorations" class="py-32 px-6 bg-darker">
     <div class="max-w-6xl mx-auto">
@@ -276,6 +230,52 @@ import content from '../../content/fr.json';
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
               )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl md:text-6xl font-black mb-16 reveal">
+        {content.projects.title}<span class="text-accent glow-accent">.</span>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8 stagger-children reveal">
+        {content.projects.items.map((project: { title: string; description: string; category: string; image?: string; images?: string[] }, idx: number) => (
+          <div class="stagger-item group relative bg-darker rounded-lg overflow-hidden hover:ring-2 hover:ring-accent/50 transition-all duration-300 hover-lift">
+            {project.images && project.images.length > 1 ? (
+              <div class="relative aspect-video overflow-hidden" data-slider={idx}>
+                <div class="slider-track flex transition-transform duration-500 ease-out" style="width: 100%;">
+                  {project.images.map((img: string, i: number) => (
+                    <img src={img} alt={`${project.title} ${i + 1}`} class="aspect-video object-cover w-full flex-shrink-0" />
+                  ))}
+                </div>
+                <button class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center hover:bg-accent transition-colors" data-slider-prev={idx}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center hover:bg-accent transition-colors" data-slider-next={idx}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                  {project.images.map((_: string, i: number) => (
+                    <span class={`w-2 h-2 rounded-full ${i === 0 ? 'bg-accent' : 'bg-white/30'}`} data-dot={`${idx}-${i}`}></span>
+                  ))}
+                </div>
+              </div>
+            ) : project.images && project.images.length === 1 ? (
+              <img src={project.images[0]} alt={project.title} class="aspect-video object-cover w-full" />
+            ) : project.image ? (
+              <img src={project.image} alt={project.title} class="aspect-video object-cover w-full" />
+            ) : (
+              <div class="aspect-video bg-gradient-to-br from-white/5 to-transparent"></div>
+            )}
+            <div class="p-6">
+              <span class="text-accent text-xs tracking-wider uppercase">{project.category}</span>
+              <h3 class="text-2xl font-bold mt-2 group-hover:text-accent transition-colors">{project.title}</h3>
+              <p class="text-gray-400 mt-2">{project.description}</p>
             </div>
           </div>
         ))}
