@@ -102,6 +102,13 @@
         "category": "AI / Productivity",
         "url": "https://podcast-summaries.netlify.app",
         "images": ["/images/podcast-summaries-1.jpg", "/images/podcast-summaries-2.jpg"]
+      },
+      {
+        "title": "Galerie",
+        "description": "A daily art history quiz that trains your eye to recognize the great masters. Ten paintings, two questions each — identify the artist, then the movement. Covers 20 movements and 48 artists spanning six centuries, with artworks drawn from the collections of the Art Institute of Chicago and the Metropolitan Museum of Art.",
+        "category": "AI / Culture",
+        "url": "https://galerie-art-quiz.netlify.app",
+        "images": ["/images/galerie-1.jpg"]
       }
     ]
   },
