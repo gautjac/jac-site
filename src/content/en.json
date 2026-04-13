@@ -109,6 +109,13 @@
         "category": "AI / Culture",
         "url": "https://galerie-art-quiz.netlify.app",
         "images": ["/images/galerie-1.jpg"]
+      },
+      {
+        "title": "Carmen",
+        "description": "An AI lyric-writing studio that learns your voice and helps you write songs that sound like you. Structured around verses, choruses, and bridges, with line-level tools for rhythm matching, rhyme finding, rewriting, and flow analysis. Works in English and French.",
+        "category": "AI / Music",
+        "url": "https://carmen-app.netlify.app",
+        "images": ["/images/carmen-1.jpg"]
       }
     ]
   },

@@ -109,6 +109,13 @@
         "category": "IA / Culture",
         "url": "https://galerie-art-quiz.netlify.app",
         "images": ["/images/galerie-1.jpg"]
+      },
+      {
+        "title": "Carmen",
+        "description": "Un studio d'écriture de paroles propulsé par l'IA qui apprend votre voix et vous aide à écrire des chansons qui vous ressemblent. Structuré autour de couplets, refrains et ponts, avec des outils ligne par ligne pour le rythme, les rimes, la réécriture et l'analyse du flow. Fonctionne en anglais et en français.",
+        "category": "IA / Musique",
+        "url": "https://carmen-app.netlify.app",
+        "images": ["/images/carmen-1.jpg"]
       }
     ]
   },
