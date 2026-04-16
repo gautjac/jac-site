@@ -7,11 +7,10 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "/Users/jacquesgautreau/.openclaw/workspace/jac-site/dist"
-publishOrigin = "ui"
-commandOrigin = "ui"
+publish = "/Users/jacquesgautreau/jac-site/dist"
+publishOrigin = "config"
+commandOrigin = "config"
 command = "npm run build"
-ignore = "exit 0"
 
 [build.environment]
 

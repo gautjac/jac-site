@@ -97,6 +97,13 @@
     "subtitle": "Apps and tools I'm building",
     "items": [
       {
+        "title": "Amorce",
+        "description": "A daily 25-minute pomodoro poetry studio. Each morning the app reads yesterday's journal entry, extracts a single noun and sensory image as kindling, and hands you the writing surface with a timer. When the chime falls, three AI images are drawn from your poem, and a Canvas tool lays the text over one — drag, resize, pick any of twelve typefaces — ready to share straight from the iOS share sheet. Cross-device sync via Firestore.",
+        "category": "AI / Writing",
+        "url": "https://jac-amorce.netlify.app",
+        "images": ["/images/amorce-1.jpg"]
+      },
+      {
         "title": "Podcast Summaries",
         "description": "AI-generated deep summaries with personalized insights and audio narration. Built with Astro, local LLM transcription, and custom TTS.",
         "category": "AI / Productivity",

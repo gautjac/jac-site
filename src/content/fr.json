@@ -97,6 +97,13 @@
     "subtitle": "Applications et outils en développement",
     "items": [
       {
+        "title": "Amorce",
+        "description": "Un studio quotidien de poésie pomodoro de 25 minutes. Chaque matin, l'app lit mon entrée de journal de la veille, en extrait un nom et une image sensorielle comme amorce, puis m'offre la surface d'écriture et un minuteur. Quand le carillon tombe, trois images sont tirées du poème par IA, et un outil Canvas dépose le texte sur l'une d'elles — glisser, redimensionner, choisir parmi douze caractères — prêt à partager via la feuille de partage iOS. Synchronisation multi-appareils via Firestore.",
+        "category": "IA / Écriture",
+        "url": "https://jac-amorce.netlify.app",
+        "images": ["/images/amorce-1.jpg"]
+      },
+      {
         "title": "Résumés de podcasts",
         "description": "Résumés approfondis générés par IA avec perspectives personnalisées et narration audio. Construit avec Astro, transcription LLM locale et TTS sur mesure.",
         "category": "IA / Productivité",
