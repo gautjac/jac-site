@@ -123,6 +123,20 @@
         "category": "IA / Musique",
         "url": "https://carmen-app.netlify.app",
         "images": ["/images/carmen-1.jpg"]
+      },
+      {
+        "title": "Tarot of the Studio",
+        "description": "Un jeu personnel de 78 cartes de tarot tiré de ma propre vie et de ma pratique. Les arcanes majeurs mettent en vedette des concepts acadiens, atlantiques et personnels ; les quatre couleurs sont Pages (écriture), Strings (musique), Mirrors (cinéma) et Groves (nature), avec des cartes de cour suivant l'ancienne progression des guildes françaises — Apprenti, Compagnon, Artisan, Maître. Tirez une carte, trois, ou une Croix du Studio.",
+        "category": "IA / Rituel",
+        "url": "https://tarot-of-the-studio.netlify.app",
+        "images": ["/images/tarot-1.jpg"]
+      },
+      {
+        "title": "The Vault",
+        "description": "Un graphe 3D vivant, en force dirigée, de mon wiki personnel. Les nœuds sont des pages, les arêtes des liens wiki. Les nœuds de projet en carmin pulsent quand leurs dépôts ont reçu de nouveaux commits ; les pages orphelines dérivent vers la périphérie. Cliquez sur un nœud pour lire son contenu et voir ses connexions.",
+        "category": "Visualisation / Savoir",
+        "url": "https://the-vault-jac.netlify.app",
+        "images": ["/images/vault-1.jpg"]
       }
     ]
   },

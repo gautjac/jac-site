@@ -123,6 +123,20 @@
         "category": "AI / Music",
         "url": "https://carmen-app.netlify.app",
         "images": ["/images/carmen-1.jpg"]
+      },
+      {
+        "title": "Tarot of the Studio",
+        "description": "A personal 78-card tarot deck drawn from my own life and practice. The Major Arcana feature Acadian, Atlantic, and personal concepts; the four suits are Pages (writing), Strings (music), Mirrors (film), and Groves (nature), with court cards following the old French guild progression — Apprentice, Compagnon, Artisan, Maître. Draw one card, three, or a Studio Cross spread.",
+        "category": "AI / Ritual",
+        "url": "https://tarot-of-the-studio.netlify.app",
+        "images": ["/images/tarot-1.jpg"]
+      },
+      {
+        "title": "The Vault",
+        "description": "A living 3D force-directed graph of my personal wiki. Nodes are pages, edges are wikilinks. Carmine project nodes pulse when their repositories have fresh commits; orphan pages drift to the periphery. Click a node to read its entry and see its connections.",
+        "category": "Visualization / Knowledge",
+        "url": "https://the-vault-jac.netlify.app",
+        "images": ["/images/vault-1.jpg"]
       }
     ]
   },
