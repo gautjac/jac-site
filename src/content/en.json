@@ -137,6 +137,12 @@
         "category": "Visualization / Knowledge",
         "url": "https://the-vault-jac.netlify.app",
         "images": ["/images/vault-1.jpg"]
+      },
+      {
+        "title": "Willow",
+        "description": "A dog-walk diary for iOS. Clip the leash, tap start, and the phone captures the route in your pocket — no camera, no interruption. When the walk ends, Willow generates a single watercolor postcard of that walk: its time of day, weather, season, and the shape of the path. Built in SwiftUI with CoreLocation, WeatherKit, and AI image generation.",
+        "category": "iOS / AI",
+        "images": ["/images/willow-1.jpg"]
       }
     ]
   },

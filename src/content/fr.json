@@ -137,6 +137,12 @@
         "category": "Visualisation / Savoir",
         "url": "https://the-vault-jac.netlify.app",
         "images": ["/images/vault-1.jpg"]
+      },
+      {
+        "title": "Willow",
+        "description": "Un journal de promenades de chien pour iOS. Attachez la laisse, appuyez sur démarrer, et le téléphone capte le parcours dans votre poche — sans caméra, sans interruption. À la fin de la promenade, Willow génère une carte postale aquarelle unique : son moment de la journée, sa météo, sa saison, et la forme du chemin. Construit en SwiftUI avec CoreLocation, WeatherKit et la génération d'images par IA.",
+        "category": "iOS / IA",
+        "images": ["/images/willow-1.jpg"]
       }
     ]
   },
