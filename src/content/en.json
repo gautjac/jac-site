@@ -143,6 +143,13 @@
         "description": "A dog-walk diary for iOS. Clip the leash, tap start, and the phone captures the route in your pocket — no camera, no interruption. When the walk ends, Willow generates a single watercolor postcard of that walk: its time of day, weather, season, and the shape of the path. Built in SwiftUI with CoreLocation, WeatherKit, and AI image generation.",
         "category": "iOS / AI",
         "images": ["/images/willow-1.jpg"]
+      },
+      {
+        "title": "Willow Training",
+        "description": "A companion app for training Willow — our actual dog. Tracks the week's plan (four-on-the-floor, place work, greetings), runs timers for place-drill personal bests, and logs wins in the moment. Two-handler mode keeps Jac and partner in sync on streaks, sit rate, and what to work on today.",
+        "category": "Training / Dogs",
+        "url": "https://willow-training.netlify.app",
+        "images": ["/images/willow-training-1.jpg"]
       }
     ]
   },
