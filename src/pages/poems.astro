@@ -41,7 +41,10 @@ const t = {
   archiveNote: (n: number) => `${n} consecutive days, alternating French and English, posted as they were written.`,
   archiveAlt: 'Poem from',
   noneInLang: 'No poems in that language yet.',
-  close: 'Close', prev: 'Previous', next: 'Next'
+  close: 'Close', prev: 'Previous', next: 'Next',
+  eraNav: "Switch between the two runs",
+  eraAmorce: "Amorce",
+  eraArchive: "The 365"
 };
 ---
 
@@ -50,7 +53,7 @@ const t = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
   <link rel="stylesheet" href={GOOGLE_FONTS_URL} slot="head" />
 
-  <div class="min-h-screen bg-[#0a0a0a] text-white">
+  <div id="poems-root" class="min-h-screen bg-[#0a0a0a] text-white">
 
     <!-- Nav -->
     <nav class="fixed top-0 left-0 right-0 z-50 nav-bg backdrop-blur-sm border-b border-themed">
@@ -78,9 +81,28 @@ const t = {
       <p class="text-neutral-400 max-w-2xl">{t.intro}</p>
     </header>
 
+    <!-- Mobile only: on a phone this page runs to ~125 screens and the archive
+         doesn't start until screen 87, so the section headings scroll out of
+         sight long before you need them. This bar says which run you're in and
+         jumps to the other. Desktop shows both headings at once and skips it. -->
+    {poems.length > 0 && images.length > 0 && (
+      <nav id="era-bar" class="md:hidden sticky top-[63px] z-30 nav-bg backdrop-blur-sm border-b border-themed" aria-label={t.eraNav}>
+        <div class="max-w-6xl mx-auto px-6 flex">
+          <button type="button" class="era-tab flex-1 py-2.5 text-left border-b-2 border-transparent transition-colors" data-target="era-amorce">
+            <span class="block text-sm font-medium leading-tight">{t.eraAmorce}</span>
+            <span class="block text-[11px] font-mono tracking-wide text-neutral-500">{`2026 · ${poems.length}`}</span>
+          </button>
+          <button type="button" class="era-tab flex-1 py-2.5 text-right border-b-2 border-transparent transition-colors" data-target="era-archive">
+            <span class="block text-sm font-medium leading-tight">{t.eraArchive}</span>
+            <span class="block text-[11px] font-mono tracking-wide text-neutral-500">{`2020–2021 · ${images.length}`}</span>
+          </button>
+        </div>
+      </nav>
+    )}
+
     <!-- 2026 — Amorce -->
     {poems.length > 0 && (
-      <section class="px-6 pb-20 max-w-6xl mx-auto">
+      <section id="era-amorce" class="px-6 pb-20 max-w-6xl mx-auto scroll-mt-32">
         <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-white/10 pb-4 mb-8">
           <div>
             <h2 class="text-2xl font-semibold tracking-tight">{t.recentTitle}</h2>
@@ -120,7 +142,7 @@ const t = {
 
     <!-- 2020–2021 — the original 365 -->
     {images.length > 0 && (
-      <section class="px-6 pb-16 max-w-6xl mx-auto">
+      <section id="era-archive" class="px-6 pb-16 max-w-6xl mx-auto scroll-mt-32">
         <div class="border-b border-white/10 pb-4 mb-8">
           <h2 class="text-2xl font-semibold tracking-tight">{t.archiveTitle}</h2>
           <p class="text-neutral-500 text-sm mt-1">{t.archiveNote(images.length)}</p>
@@ -292,5 +314,78 @@ const t = {
       empty.classList.toggle('hidden', shown > 0);
     });
   });
+
+  // Mobile era bar: mark the run you're currently scrolled into, and jump.
+  const eraBar = document.getElementById('era-bar');
+  if (eraBar) {
+    const tabs = [...eraBar.querySelectorAll('.era-tab')] as HTMLElement[];
+    const targets = tabs.map(t => document.getElementById(t.dataset.target!));
+
+    const ACTIVE = ['border-accent', 'text-white'];
+    const IDLE = ['border-transparent', 'text-neutral-500'];
+
+    function mark(i: number) {
+      tabs.forEach((tab, j) => {
+        tab.classList.remove(...(j === i ? IDLE : ACTIVE));
+        tab.classList.add(...(j === i ? ACTIVE : IDLE));
+        tab.setAttribute('aria-current', j === i ? 'true' : 'false');
+      });
+    }
+
+    // Whichever section the bar is currently sitting over wins. The scroll-mt
+    // on each section parks its heading a few px BELOW the bar after a jump, so
+    // the test line reaches past the bar far enough to count that as arrival.
+    const ARRIVAL_SLACK = 32;
+    let queued = false;
+    function sync() {
+      queued = false;
+      const line = eraBar.getBoundingClientRect().bottom + ARRIVAL_SLACK;
+      let i = 0;
+      targets.forEach((el, j) => { if (el && el.getBoundingClientRect().top <= line) i = j; });
+      mark(i);
+    }
+    addEventListener('scroll', () => {
+      if (!queued) { queued = true; requestAnimationFrame(sync); }
+    }, { passive: true });
+    addEventListener('resize', sync, { passive: true });
+
+    // scroll-mt on the sections already clears the fixed nav and this bar.
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => {
+      targets[i]?.scrollIntoView({ behavior: 'auto', block: 'start' });
+      mark(i);                          // don't wait for the scroll event
+      requestAnimationFrame(sync);      // then reconcile against reality
+    }));
+
+    mark(0);
+    sync();
+  }
 </script>
 
+<style>
+  /* Two fixes, both about page chrome.
+     1. These theme utilities are defined per page elsewhere in the site, but
+        the poems pages never had them — so the nav (and now the era bar) had
+        no background at all and poem art showed straight through.
+     2. This page is always dark (the wrapper hardcodes #0a0a0a), while the
+        site's tokens flip to a light palette under prefers-color-scheme: light.
+        That painted a white nav and a white era bar, with white text on them.
+        Pin the dark values here so the chrome matches the page it sits on. */
+  #poems-root {
+    --color-nav-bg: rgba(10, 10, 10, 0.9);
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-text-secondary: #a1a1a1;
+    --color-accent: #E6B325;
+  }
+
+  .nav-bg {
+    background-color: var(--color-nav-bg);
+  }
+
+  .border-themed {
+    border-color: var(--color-border);
+  }
+
+  .border-themed-strong {
+    border-color: rgba(128, 128, 128, 0.3);
+  }
+</style>
