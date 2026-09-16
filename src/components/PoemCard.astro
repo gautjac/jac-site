@@ -1,0 +1,83 @@
+---
+// One Amorce poem, re-rendered as the card it was shared as.
+//
+// Amorce composes on a 1080×1350 canvas and stores each box, font, and size in
+// that coordinate space. Rendering here in container-query units reproduces the
+// composition at any width — and unlike the exported PNG, the text stays real
+// text: selectable, searchable, and readable by a screen reader.
+import { CANVAS, getFont, u, textShadow } from '../../scripts/amorce-card.mjs';
+
+interface Props {
+  poem: any;
+  loading?: 'lazy' | 'eager';
+}
+const { poem, loading = 'lazy' } = Astro.props;
+
+const font = getFont(poem.fontId);
+const titleFont = getFont(poem.titleFontId);
+const isLight = poem.textColor === 'light';
+const fill = isLight ? CANVAS.light : CANVAS.dark;
+const shadow = textShadow(isLight);
+const P = CANVAS.innerPad;
+
+// A stored box becomes an absolutely-placed, centred flex cell.
+const cell = (box: any) => [
+  'position:absolute',
+  `left:${u(box.x)}`, `top:${u(box.y)}`,
+  `width:${u(box.w)}`, `height:${u(box.h)}`,
+  `padding:${u(P)}`,
+  'display:flex', 'align-items:center', 'justify-content:center',
+  'overflow:hidden', `color:${fill}`
+].join(';');
+
+const copy = (f: any, size: number, box: any) => [
+  'width:100%',
+  `max-height:${u(box.h - P * 2)}`,
+  'white-space:pre-wrap', 'word-break:break-word', 'overflow-wrap:break-word',
+  `font-family:${f.family}`, 'font-weight:400',
+  `font-size:${u(size)}`, `line-height:${f.lineHeight}`,
+  'letter-spacing:-0.01em', `text-shadow:${shadow}`
+].join(';');
+
+const F = CANVAS.footer;
+---
+<figure
+  class="poem-card relative overflow-hidden rounded-sm"
+  style={`container-type:inline-size;aspect-ratio:${CANVAS.w}/${CANVAS.h};background:${CANVAS.dark}`}
+>
+  <img
+    src={poem.thumb ?? poem.image}
+    srcset={poem.thumb ? `${poem.thumb} 480w, ${poem.image} 1080w` : undefined}
+    sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 92vw"
+    data-full={poem.image}
+    alt=""
+    loading={loading}
+    decoding="async"
+    width={CANVAS.w}
+    height={CANVAS.h}
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  {poem.title?.trim() && (
+    <div style={cell(poem.titleBox)} aria-hidden="true">
+      <div style={copy(titleFont, poem.titleFontSize ?? 64, poem.titleBox)}>{poem.title}</div>
+    </div>
+  )}
+
+  <div style={cell(poem.textBox)}>
+    <div style={copy(font, poem.fontSize ?? 32, poem.textBox)}>{poem.text}</div>
+  </div>
+
+  <div
+    style={`position:absolute;left:${u(F.left)};bottom:${u(F.bottom)};color:${fill};text-shadow:${shadow};opacity:0.82`}
+    aria-hidden="true"
+  >
+    <div style={`font-family:Inter,sans-serif;font-weight:500;font-size:${u(F.size)};letter-spacing:${F.tracking};text-transform:uppercase;opacity:0.6`}>
+      {poem.footer ?? `amorce · ${poem.date} · ${poem.nucleus}`}
+    </div>
+  </div>
+
+  <figcaption class="sr-only">
+    {poem.title} — {poem.date}
+  </figcaption>
+</figure>

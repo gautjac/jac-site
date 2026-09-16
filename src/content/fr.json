@@ -97,61 +97,39 @@
     "subtitle": "Applications et outils en développement",
     "items": [
       {
+        "title": "Carmen",
+        "description": "Un studio d'écriture de paroles propulsé par l'IA qui apprend votre voix et vous aide à écrire des chansons qui vous ressemblent. Structuré autour de couplets, refrains et ponts, avec des outils ligne par ligne pour le rythme, les rimes, la réécriture et l'analyse du flow. Fonctionne en anglais et en français.",
+        "category": "IA / Musique",
+        "url": "https://carmencowriter.com",
+        "images": ["/images/carmen-1.jpg"]
+      },
+      {
+        "title": "L'Estompe",
+        "description": "Une surface de peinture qui continue de bouger quand on lève le crayon. Les traits alimentent une simulation de fluide en direct, les courants deviennent des formes, et une couche de réaction-diffusion laisse l'image se développer toute seule. Conçue pour l'iPad et l'Apple Pencil, avec neuf palettes et un passage Métamorphose qui redessine toute la toile.",
+        "category": "Génératif / Dessin",
+        "url": "https://l-estompe.netlify.app",
+        "images": ["/images/l-estompe-1.jpg"]
+      },
+      {
+        "title": "La Réplique",
+        "description": "Un atelier d'écriture théâtrale pour iPhone, iPad et Mac. Une page propre pour le texte, un tableau de cartes pour la structure, et un dramaturge de poche qui pose les questions qu'un premier jet appelle. Bilingue de bout en bout — chaque réplique dans sa langue et son écho, côte à côte — et chaque pièce se publie en lecture web partageable.",
+        "category": "Écriture / Théâtre",
+        "url": "https://la-replique.netlify.app",
+        "images": ["/images/la-replique-1.jpg"]
+      },
+      {
         "title": "Amorce",
         "description": "Un studio quotidien de poésie pomodoro de 25 minutes. Chaque matin, l'app lit mon entrée de journal de la veille, en extrait un nom et une image sensorielle comme amorce, puis m'offre la surface d'écriture et un minuteur. Quand le carillon tombe, trois images sont tirées du poème par IA, et un outil Canvas dépose le texte sur l'une d'elles — glisser, redimensionner, choisir parmi douze caractères — prêt à partager via la feuille de partage iOS. Synchronisation multi-appareils via Firestore.",
         "category": "IA / Écriture",
         "url": "https://jac-amorce.netlify.app",
         "images": ["/images/amorce-1.jpg"]
-      },
-      {
-        "title": "Résumés de podcasts",
-        "description": "Résumés approfondis générés par IA avec perspectives personnalisées et narration audio. Construit avec Astro, transcription LLM locale et TTS sur mesure.",
-        "category": "IA / Productivité",
-        "url": "https://podcast-summaries.netlify.app",
-        "images": ["/images/podcast-summaries-1.jpg", "/images/podcast-summaries-2.jpg"]
-      },
-      {
-        "title": "Galerie",
-        "description": "Un quiz quotidien d'histoire de l'art pour entraîner votre œil à reconnaître les grands maîtres. Dix tableaux, deux questions chacun — identifiez l'artiste, puis le mouvement. Couvre 20 mouvements et 48 artistes sur six siècles, avec des œuvres tirées des collections de l'Art Institute of Chicago et du Metropolitan Museum of Art.",
-        "category": "IA / Culture",
-        "url": "https://galerie-art-quiz.netlify.app",
-        "images": ["/images/galerie-1.jpg"]
-      },
-      {
-        "title": "Carmen",
-        "description": "Un studio d'écriture de paroles propulsé par l'IA qui apprend votre voix et vous aide à écrire des chansons qui vous ressemblent. Structuré autour de couplets, refrains et ponts, avec des outils ligne par ligne pour le rythme, les rimes, la réécriture et l'analyse du flow. Fonctionne en anglais et en français.",
-        "category": "IA / Musique",
-        "url": "https://carmen-app.netlify.app",
-        "images": ["/images/carmen-1.jpg"]
-      },
-      {
-        "title": "Tarot of the Studio",
-        "description": "Un jeu personnel de 78 cartes de tarot tiré de ma propre vie et de ma pratique. Les arcanes majeurs mettent en vedette des concepts acadiens, atlantiques et personnels ; les quatre couleurs sont Pages (écriture), Strings (musique), Mirrors (cinéma) et Groves (nature), avec des cartes de cour suivant l'ancienne progression des guildes françaises — Apprenti, Compagnon, Artisan, Maître. Tirez une carte, trois, ou une Croix du Studio.",
-        "category": "IA / Rituel",
-        "url": "https://tarot-of-the-studio.netlify.app",
-        "images": ["/images/tarot-1.jpg"]
-      },
-      {
-        "title": "The Vault",
-        "description": "Un graphe 3D vivant, en force dirigée, de mon wiki personnel. Les nœuds sont des pages, les arêtes des liens wiki. Les nœuds de projet en carmin pulsent quand leurs dépôts ont reçu de nouveaux commits ; les pages orphelines dérivent vers la périphérie. Cliquez sur un nœud pour lire son contenu et voir ses connexions.",
-        "category": "Visualisation / Savoir",
-        "url": "https://the-vault-jac.netlify.app",
-        "images": ["/images/vault-1.jpg"]
-      },
-      {
-        "title": "Willow",
-        "description": "Un journal de promenades de chien pour iOS. Attachez la laisse, appuyez sur démarrer, et le téléphone capte le parcours dans votre poche — sans caméra, sans interruption. À la fin de la promenade, Willow génère une carte postale aquarelle unique : son moment de la journée, sa météo, sa saison, et la forme du chemin. Construit en SwiftUI avec CoreLocation, WeatherKit et la génération d'images par IA.",
-        "category": "iOS / IA",
-        "images": ["/images/willow-1.jpg"]
-      },
-      {
-        "title": "Willow Training",
-        "description": "Une app compagnon pour entraîner Willow — notre vraie chienne. Suit le plan de la semaine (quatre pattes au sol, travail au tapis, salutations), chronomètre les records personnels au tapis, et consigne les bons coups sur le moment. Le mode deux maîtres garde Jac et partenaire synchronisés sur les séries, le taux de « sit », et ce qu'il faut travailler aujourd'hui.",
-        "category": "Entraînement / Chiens",
-        "url": "https://willow-training.netlify.app",
-        "images": ["/images/willow-training-1.jpg"]
       }
-    ]
+    ],
+    "more": {
+      "text": "Et quelques centaines d'autres — de petits outils faits pour une seule chose, la plupart en une fin de semaine.",
+      "linkLabel": "Visiter l'atelier",
+      "url": "https://atelier-jac.netlify.app"
+    }
   },
   
   "contact": {
@@ -174,6 +152,12 @@
       "experience": {
         "title": "Expérience",
         "items": [
+          {
+            "role": "Directeur de création pigiste",
+            "organization": "À son compte",
+            "context": "Télévision, théâtre et création interactive — Connections Productions, Pays de la Sagouine, TFO",
+            "period": "Mai 2025–présent"
+          },
           {
             "role": "Directeur de l'éducation",
             "organization": "Office national du film du Canada",
@@ -221,15 +205,33 @@
       },
       "skills": {
         "title": "Compétences",
-        "content": "En tant que créateur technologique, Jac a conçu des contenus innovants à l'intersection de l'art, de la narration et de la technologie."
+        "content": "Trois décennies à créer des œuvres qui rencontrent leur public — disques, spectacles, télévision nationale, installations muséales et médias interactifs. Parfaitement bilingue en écriture, en réalisation et en production. Conçoit et développe aussi des logiciels : applications web, applications natives iOS et macOS, et instruments audio, réalisés en solo avec l'assistance de l'IA."
       },
       "highlights": {
         "title": "Faits saillants",
         "items": [
           {
+            "project": "La grande veillée du temps des fêtes",
+            "context": "Connections Productions — Émission spéciale des fêtes",
+            "year": "2026",
+            "roles": ["Recherchiste principal", "Producteur de contenu"]
+          },
+          {
+            "project": "La dernière nuit",
+            "context": "Pays de la Sagouine — Production estivale",
+            "year": "2026",
+            "roles": ["Script-édition", "Chansons originales"]
+          },
+          {
+            "project": "Jam avec Damien",
+            "context": "Série musicale et de variétés pour TFO",
+            "year": "2026",
+            "roles": ["Producteur de contenu"]
+          },
+          {
             "project": "Acadictionnaire",
             "context": "Pays de la Sagouine",
-            "year": "2025",
+            "year": "2025–2026",
             "roles": ["Écriture", "Mise en scène", "Vidéo-scénographie", "Chansons"]
           },
           {
@@ -269,9 +271,9 @@
           },
           {
             "project": "Pomodoro Poems",
-            "url": "https://instagram.com/gautjac",
-            "context": "Une année de poèmes quotidiens alternant entre le français et l'anglais",
-            "year": "2020–2021",
+            "url": "/fr/poems",
+            "context": "365 poèmes quotidiens en alternance français-anglais, repris en 2026 avec Amorce",
+            "year": "2020–2021, 2026–présent",
             "roles": ["Auteur", "Créateur"]
           },
           {
@@ -337,7 +339,7 @@
         "items": [
           {
             "role": "Membre",
-            "organization": "Conseil culturel — Ville de Moncton",
+            "organization": "Comité culturel — Ville de Moncton",
             "period": "2025–Présent"
           },
           {

@@ -120,6 +120,8 @@ const personSchema = {
     <!-- Plausible Analytics -->
     <script async src="https://plausible.io/js/pa-AJMefUHRHrVXJyUFhLOes.js"></script>
     <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+    <!-- Pages that need extra faces or tags (e.g. the poem cards) add them here. -->
+    <slot name="head" />
   </head>
   <body class="bg-dark text-white font-sans antialiased">
     <!-- Language Selection Modal -->

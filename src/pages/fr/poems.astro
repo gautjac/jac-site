@@ -1,9 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PoemCard from '../../components/PoemCard.astro';
 import content from '../../content/fr.json';
+import poems from '../../content/amorce-poems.json';
+import { GOOGLE_FONTS_URL } from '../../../scripts/amorce-card.mjs';
 import fs from 'fs';
 import path from 'path';
 
+// The 2020–2021 run exists only as the images that were posted; they live
+// outside the repo (see .gitignore) and ship with the CLI deploy.
 const poemsDir = path.join(process.cwd(), 'instagram-poems');
 let images: { src: string; date: string; year: string }[] = [];
 
@@ -12,17 +17,39 @@ if (fs.existsSync(poemsDir)) {
     .filter(f => f.endsWith('.jpg') && !f.includes('profile_pic'))
     .sort((a, b) => a.localeCompare(b))
     .map(f => {
-      const dateMatch = f.match(/^(\d{4}-\d{2}-\d{2})/);
-      const date = dateMatch ? dateMatch[1] : '';
-      const year = date ? date.slice(0, 4) : '';
-      return { src: `/poems/${f}`, date, year };
+      const date = f.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
+      return { src: `/poems/${f}`, date, year: date.slice(0, 4) };
     });
 }
 
-const years = [...new Set(images.map(i => i.year))].filter(Boolean).sort().reverse();
+// The 2026 run comes from Amorce, refreshed by scripts/fetch-amorce.mjs.
+const langs = [{ id: 'all', label: 'Tous' }, { id: 'fr', label: 'Français' }, { id: 'en', label: 'English' }, { id: 'chiac', label: 'Chiac' }].filter(
+  l => l.id === 'all' || poems.some((p: any) => p.lang === l.id)
+);
+
+// Poem dates are stored ISO; the range reads better spelled out.
+const fmtDate = (iso: string) =>
+  new Intl.DateTimeFormat('fr-CA', { day: 'numeric', month: 'long', year: 'numeric' })
+    .format(new Date(iso + 'T12:00:00'));
+
+const t = {
+  title: 'Poèmes',
+  intro: "Une pratique quotidienne, deux fois plutôt qu'une. Une année de poèmes écrits pendant la pandémie, et une deuxième série entamée en 2026 — toujours un poème, un jour à la fois.",
+  recentTitle: 'Amorce — 2026',
+  recentNote: (n: number, from: string, to: string) => `${n} poèmes, du ${fmtDate(from)} au ${fmtDate(to)}. Vingt-cinq minutes chacun, écrits dans Amorce.`,
+  archiveTitle: 'Les 365 — 2020–2021',
+  archiveNote: (n: number) => `${n} jours consécutifs, en alternance français-anglais, publiés au fil de l'écriture.`,
+  archiveAlt: 'Poème du',
+  noneInLang: 'Aucun poème dans cette langue pour le moment.',
+  close: 'Fermer', prev: 'Précédent', next: 'Suivant'
+};
 ---
 
 <Layout title="Poèmes — Jac Gautreau" lang="fr">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
+  <link rel="stylesheet" href={GOOGLE_FONTS_URL} slot="head" />
+
   <div class="min-h-screen bg-[#0a0a0a] text-white">
 
     <!-- Nav -->
@@ -39,33 +66,65 @@ const years = [...new Set(images.map(i => i.year))].filter(Boolean).sort().rever
             <a href="/fr/poems" class="text-accent transition-colors">Poèmes</a>
             <a href="/fr/#contact" class="text-text-secondary hover:text-accent transition-colors">{content.nav.contact}</a>
           </div>
-          <a href="/fr/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">CV</a>
+          <a href="/fr/resume" class="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-sm text-accent hover:bg-accent hover:text-dark transition-colors">{content.resume.title}</a>
           <a href="/poems" class="px-3 py-1 border border-themed-strong rounded text-sm text-text-secondary hover:border-accent hover:text-accent transition-colors">EN</a>
         </div>
       </div>
     </nav>
 
     <!-- Header -->
-    <header class="px-6 pt-32 pb-8 max-w-6xl mx-auto">
-      <h1 class="text-4xl font-semibold tracking-tight mb-3">Poèmes</h1>
-      <p class="text-neutral-400">Une collection de poèmes écrits pendant la pandémie. Un poème, un jour à la fois.</p>
+    <header class="px-6 pt-32 pb-10 max-w-6xl mx-auto">
+      <h1 class="text-4xl font-semibold tracking-tight mb-3">{t.title}</h1>
+      <p class="text-neutral-400 max-w-2xl">{t.intro}</p>
     </header>
 
-    <!-- Year filter -->
-    {years.length > 1 && (
-      <div class="px-6 pb-8 max-w-6xl mx-auto flex flex-wrap gap-2">
-        <button class="year-btn active px-4 py-1.5 rounded-full text-sm border border-white/20 text-neutral-300 bg-white/10 hover:bg-white/15 transition-colors" data-year="all">Tout</button>
-        {years.map(year => (
-          <button class="year-btn px-4 py-1.5 rounded-full text-sm border border-white/10 text-neutral-500 hover:text-neutral-300 hover:border-white/20 transition-colors" data-year={year}>{year}</button>
-        ))}
-      </div>
+    <!-- 2026 — Amorce -->
+    {poems.length > 0 && (
+      <section class="px-6 pb-20 max-w-6xl mx-auto">
+        <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-white/10 pb-4 mb-8">
+          <div>
+            <h2 class="text-2xl font-semibold tracking-tight">{t.recentTitle}</h2>
+            <p class="text-neutral-500 text-sm mt-1">{t.recentNote(poems.length, poems[poems.length - 1].date, poems[0].date)}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {langs.map((l, i) => (
+              <button
+                class={`lang-btn px-4 py-1.5 rounded-full text-sm border transition-colors ${i === 0 ? 'active bg-white/10 text-neutral-300 border-white/20' : 'text-neutral-500 border-white/10 hover:text-neutral-300 hover:border-white/20'}`}
+                data-lang={l.id}
+              >{l.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {poems.map((poem, i) => (
+            <button
+              class="amorce-item group text-left"
+              data-index={i}
+              data-lang={poem.lang}
+              aria-label={`${poem.title} — ${poem.date}`}
+            >
+              <div class="rounded-sm overflow-hidden ring-1 ring-white/10 group-hover:ring-white/30 transition-all duration-300 group-hover:-translate-y-0.5">
+                <PoemCard poem={poem} />
+              </div>
+              <div class="flex items-baseline justify-between gap-3 mt-3 px-0.5">
+                <span class="text-neutral-300 text-sm truncate">{poem.title}</span>
+                <span class="text-neutral-600 text-xs font-mono shrink-0">{poem.date}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+        <p class="lang-empty hidden text-neutral-600 text-center py-16">{t.noneInLang}</p>
+      </section>
     )}
 
-    <!-- Grid -->
-    <main class="px-6 pb-16 max-w-6xl mx-auto">
-      {images.length === 0 ? (
-        <p class="text-neutral-600 text-center py-20">Chargement des poèmes — revenez bientôt.</p>
-      ) : (
+    <!-- 2020–2021 — the original 365 -->
+    {images.length > 0 && (
+      <section class="px-6 pb-16 max-w-6xl mx-auto">
+        <div class="border-b border-white/10 pb-4 mb-8">
+          <h2 class="text-2xl font-semibold tracking-tight">{t.archiveTitle}</h2>
+          <p class="text-neutral-500 text-sm mt-1">{t.archiveNote(images.length)}</p>
+        </div>
         <div id="poems-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {images.map((img, i) => (
             <button
@@ -76,7 +135,7 @@ const years = [...new Set(images.map(i => i.year))].filter(Boolean).sort().rever
             >
               <img
                 src={img.src}
-                alt={`Poème du ${img.date}`}
+                alt={`${t.archiveAlt} ${img.date}`}
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
@@ -86,97 +145,152 @@ const years = [...new Set(images.map(i => i.year))].filter(Boolean).sort().rever
             </button>
           ))}
         </div>
-      )}
-    </main>
+      </section>
+    )}
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center p-4">
-      <button id="lb-close" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-3xl w-10 h-10 flex items-center justify-center">✕</button>
-      <button id="lb-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-4xl w-12 h-12 flex items-center justify-center">‹</button>
-      <button id="lb-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-4xl w-12 h-12 flex items-center justify-center">›</button>
-      <img id="lb-img" src="" alt="" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl" />
-      <p id="lb-date" class="text-neutral-600 text-sm mt-4"></p>
+    <script id="poem-data" type="application/json" is:inline set:html={JSON.stringify(
+      poems.map((p: any) => ({ title: p.title, text: p.text, date: p.date, nucleus: p.nucleus }))
+    )}></script>
+
+    <!-- Lightbox — serves both eras -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col p-4 overflow-y-auto">
+      <button id="lb-close" class="fixed top-4 right-4 text-neutral-400 hover:text-white text-3xl w-10 h-10 flex items-center justify-center z-20" aria-label={t.close}>✕</button>
+      <button id="lb-prev" class="fixed left-2 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-4xl w-12 h-12 flex items-center justify-center z-20" aria-label={t.prev}>‹</button>
+      <button id="lb-next" class="fixed right-2 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-4xl w-12 h-12 flex items-center justify-center z-20" aria-label={t.next}>›</button>
+
+      <div class="m-auto w-full max-w-5xl py-10">
+        <img id="lb-img" src="" alt="" class="max-h-[85vh] mx-auto object-contain rounded-lg shadow-2xl hidden" />
+
+        <!-- The card as it was composed, beside the poem at a size you can read. -->
+        <div id="lb-pane" class="hidden grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+          <div id="lb-card" class="w-full max-w-[min(90vw,420px)] mx-auto md:mx-0"></div>
+          <div class="min-w-0">
+            <h3 id="lb-title" class="text-2xl md:text-3xl font-semibold tracking-tight mb-1"></h3>
+            <p id="lb-meta" class="text-neutral-500 text-xs font-mono mb-6"></p>
+            <p id="lb-body" class="text-neutral-200 leading-relaxed whitespace-pre-wrap text-[15px] md:text-base"></p>
+          </div>
+        </div>
+
+        <p id="lb-date" class="text-neutral-600 text-sm mt-4 text-center"></p>
+      </div>
     </div>
 
   </div>
 </Layout>
 
 <script>
-  const items = document.querySelectorAll('.poem-item') as NodeListOf<HTMLElement>;
+  // Two galleries, one lightbox. The archive shows a flat image; an Amorce
+  // poem is a live card, so it is cloned into the lightbox — container queries
+  // then re-lay it out at the larger width with no re-rendering.
+  const archiveItems = [...document.querySelectorAll('.poem-item')] as HTMLElement[];
+  const amorceItems = [...document.querySelectorAll('.amorce-item')] as HTMLElement[];
+
   const lightbox = document.getElementById('lightbox')!;
   const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCard = document.getElementById('lb-card')!;
+  const lbPane = document.getElementById('lb-pane')!;
+  const lbTitle = document.getElementById('lb-title')!;
+  const lbMeta = document.getElementById('lb-meta')!;
+  const lbBody = document.getElementById('lb-body')!;
   const lbDate = document.getElementById('lb-date')!;
-  const lbClose = document.getElementById('lb-close')!;
+  const poemData = JSON.parse(document.getElementById('poem-data')!.textContent!);
   const lbPrev = document.getElementById('lb-prev')!;
   const lbNext = document.getElementById('lb-next')!;
 
-  let currentIndex = 0;
-  let visibleItems: HTMLElement[] = [];
+  let group: HTMLElement[] = [];
+  let index = 0;
 
-  function openLightbox(index: number) {
-    visibleItems = [...items].filter(el => !el.classList.contains('hidden'));
-    currentIndex = index;
-    showImage(currentIndex);
+  function show(i: number) {
+    const item = group[i];
+    if (!item) return;
+    index = i;
+
+    if (item.classList.contains('amorce-item')) {
+      const card = item.querySelector('.poem-card')!.cloneNode(true) as HTMLElement;
+      // The grid loads the 480px thumb; at this size it needs the full image.
+      const img = card.querySelector('img') as HTMLImageElement | null;
+      if (img?.dataset.full) { img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.src = img.dataset.full; }
+      lbCard.replaceChildren(card);
+
+      // The card is faithful to what was shared, which also means the poem is
+      // set small. Repeat it here at reading size — the one thing a re-rendered
+      // card can do that an exported PNG cannot.
+      const p = poemData[Number(item.dataset.index)];
+      lbTitle.textContent = p?.title ?? '';
+      lbMeta.textContent = [p?.date, p?.nucleus].filter(Boolean).join(' · ');
+      lbBody.textContent = p?.text ?? '';
+
+      lbPane.classList.remove('hidden');
+      lbPane.classList.add('grid');
+      lbImg.classList.add('hidden');
+      lbDate.textContent = '';
+    } else {
+      lbImg.src = item.getAttribute('data-src') ?? '';
+      lbImg.classList.remove('hidden');
+      lbPane.classList.add('hidden');
+      lbPane.classList.remove('grid');
+      lbCard.replaceChildren();
+      lbDate.textContent = lbImg.src.split('/').pop()?.replace('_UTC.jpg', '').replace(/_/g, ' ') ?? '';
+    }
+
+    lbPrev.style.opacity = i > 0 ? '1' : '0.2';
+    lbNext.style.opacity = i < group.length - 1 ? '1' : '0.2';
+  }
+
+  function open(items: HTMLElement[], item: HTMLElement) {
+    group = items.filter(el => !el.classList.contains('hidden'));
+    // A filtered-out item can only arrive here programmatically; fall back to
+    // the first visible one rather than opening an empty lightbox.
+    show(Math.max(0, group.indexOf(item)));
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex');
     document.body.style.overflow = 'hidden';
   }
 
-  function closeLightbox() {
+  function close() {
     lightbox.classList.add('hidden');
     lightbox.classList.remove('flex');
+    lbCard.replaceChildren();   // stop the full-size image holding memory
+    lbPane.classList.add('hidden');
+    lbPane.classList.remove('grid');
     document.body.style.overflow = '';
   }
 
-  function showImage(index: number) {
-    const item = visibleItems[index];
-    if (!item) return;
-    const src = item.getAttribute('data-src') || '';
-    lbImg.src = src;
-    lbDate.textContent = src.split('/').pop()?.replace('_UTC.jpg', '').replace(/_/g, ' ') || '';
-    lbPrev.style.opacity = index > 0 ? '1' : '0.2';
-    lbNext.style.opacity = index < visibleItems.length - 1 ? '1' : '0.2';
-  }
+  amorceItems.forEach(item => item.addEventListener('click', () => open(amorceItems, item)));
+  archiveItems.forEach(item => item.addEventListener('click', () => open(archiveItems, item)));
 
-  items.forEach((item, i) => {
-    item.addEventListener('click', () => openLightbox(i));
-  });
+  document.getElementById('lb-close')!.addEventListener('click', close);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+  lbPrev.addEventListener('click', () => index > 0 && show(index - 1));
+  lbNext.addEventListener('click', () => index < group.length - 1 && show(index + 1));
 
-  lbClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-
-  lbPrev.addEventListener('click', () => {
-    if (currentIndex > 0) { currentIndex--; showImage(currentIndex); }
-  });
-
-  lbNext.addEventListener('click', () => {
-    if (currentIndex < visibleItems.length - 1) { currentIndex++; showImage(currentIndex); }
-  });
-
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (lightbox.classList.contains('hidden')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; showImage(currentIndex); }
-    if (e.key === 'ArrowRight' && currentIndex < visibleItems.length - 1) { currentIndex++; showImage(currentIndex); }
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft' && index > 0) show(index - 1);
+    if (e.key === 'ArrowRight' && index < group.length - 1) show(index + 1);
   });
 
-  document.querySelectorAll('.year-btn').forEach(btn => {
+  // Language filter over the Amorce run.
+  const empty = document.querySelector('.lang-empty')!;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.year-btn').forEach(b => {
+      document.querySelectorAll('.lang-btn').forEach(b => {
         b.classList.remove('active', 'bg-white/10', 'text-neutral-300', 'border-white/20');
         b.classList.add('text-neutral-500', 'border-white/10');
       });
       btn.classList.add('active', 'bg-white/10', 'text-neutral-300', 'border-white/20');
       btn.classList.remove('text-neutral-500', 'border-white/10');
 
-      const year = btn.getAttribute('data-year');
-      items.forEach(item => {
-        if (year === 'all' || item.getAttribute('data-year') === year) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
+      const lang = btn.getAttribute('data-lang');
+      let shown = 0;
+      amorceItems.forEach(item => {
+        const match = lang === 'all' || item.getAttribute('data-lang') === lang;
+        item.classList.toggle('hidden', !match);
+        if (match) shown++;
       });
+      empty.classList.toggle('hidden', shown > 0);
     });
   });
 </script>
+

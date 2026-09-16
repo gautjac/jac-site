@@ -8,6 +8,10 @@ Atlantic Canada · jac@jacgautreau.com
 
 ## Experience
 
+**Freelance Creative Director** — Independent
+*May 2025–Present*
+Television, theatre, and interactive work for Connections Productions, Pays de la Sagouine, and TFO
+
 **Director of Education** — National Film Board of Canada
 *2024–2025*
 
@@ -40,13 +44,25 @@ Produced over 30 albums, over 40 documentary scores and sound edits
 
 ## Skills
 
-As a technological creator, Jac has designed innovative content at the intersection of art, storytelling, and technology.
+Three decades of making work that meets an audience — records, live productions, national television, museum installations, and interactive media. Fully bilingual across writing, direction, and production. Now designing and building software as well: web applications, native iOS and macOS apps, and audio instruments, developed solo with AI assistance.
 
 ---
 
 ## Highlights
 
-**Acadictionnaire** — 2025
+**La grande veillée du temps des fêtes** — 2026
+Connections Productions — Holiday television special
+Head Researcher · Content Producer
+
+**La dernière nuit** — 2026
+Pays de la Sagouine — Summer production
+Script Editing · Original Songs
+
+**Jam avec Damien** — 2026
+Music and variety series for TFO
+Content Producer
+
+**Acadictionnaire** — 2025–2026
 Pays de la Sagouine
 Writing · Directing · Video Scenography · Songs
 
@@ -61,7 +77,7 @@ Artistic Advisor
 
 **Le JacShow** — 2015–2017
 Arts-focused talk show for Bell Media — 2 seasons
-https://www.youtube.com/@lejacshow86
+https://www.youtube.com/@lejacshow86?app=desktop
 Producer · Host · Musician
 
 **NFB Productions** — 2015–2016
@@ -74,9 +90,9 @@ Producer
 Nationally televised live concert
 Co-Artistic Director
 
-**Pomodoro Poems** — 2020–2021
-One year of daily poems alternating between French and English
-https://instagram.com/gautjac
+**Pomodoro Poems** — 2020–2021, 2026–Present
+365 daily poems alternating between French and English, resumed in 2026 through Amorce
+https://jacgautreau.com/poems
 Writer · Creator
 
 **Congrès mondial acadien** — 2009, 2014, 2019
@@ -113,7 +129,7 @@ Producer · Artistic Director
 
 ## Leadership & Board Roles
 
-**Member** — Cultural Board — City of Moncton
+**Member** — Cultural Committee — City of Moncton
 *2025–Present*
 
 **Vice-President** — Association Acadienne des Artistes professionel.le.s du Nouveau-Brunswick

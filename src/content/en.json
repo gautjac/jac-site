@@ -97,61 +97,39 @@
     "subtitle": "Apps and tools I'm building",
     "items": [
       {
+        "title": "Carmen",
+        "description": "An AI lyric-writing studio that learns your voice and helps you write songs that sound like you. Structured around verses, choruses, and bridges, with line-level tools for rhythm matching, rhyme finding, rewriting, and flow analysis. Works in English and French.",
+        "category": "AI / Music",
+        "url": "https://carmencowriter.com",
+        "images": ["/images/carmen-1.jpg"]
+      },
+      {
+        "title": "L'Estompe",
+        "description": "A painting surface that keeps moving after you lift the pen. Marks feed a live fluid simulation, the currents grow into shapes, and a reaction-diffusion layer lets the image keep developing on its own. Built for iPad and Apple Pencil, with nine palettes and a Metamorphose pass that redraws the whole canvas.",
+        "category": "Generative / Drawing",
+        "url": "https://l-estompe.netlify.app",
+        "images": ["/images/l-estompe-1.jpg"]
+      },
+      {
+        "title": "La Réplique",
+        "description": "A playwriting studio for iPhone, iPad, and Mac. A clean page for the text, a card board for the structure, and a pocket dramaturge that asks the questions a first draft needs. Bilingual throughout — every line in its own language and its echo, side by side — and each play publishes to a shareable web reading.",
+        "category": "Writing / Theatre",
+        "url": "https://la-replique.netlify.app",
+        "images": ["/images/la-replique-1.jpg"]
+      },
+      {
         "title": "Amorce",
         "description": "A daily 25-minute pomodoro poetry studio. Each morning the app reads yesterday's journal entry, extracts a single noun and sensory image as kindling, and hands you the writing surface with a timer. When the chime falls, three AI images are drawn from your poem, and a Canvas tool lays the text over one — drag, resize, pick any of twelve typefaces — ready to share straight from the iOS share sheet. Cross-device sync via Firestore.",
         "category": "AI / Writing",
         "url": "https://jac-amorce.netlify.app",
         "images": ["/images/amorce-1.jpg"]
-      },
-      {
-        "title": "Podcast Summaries",
-        "description": "AI-generated deep summaries with personalized insights and audio narration. Built with Astro, local LLM transcription, and custom TTS.",
-        "category": "AI / Productivity",
-        "url": "https://podcast-summaries.netlify.app",
-        "images": ["/images/podcast-summaries-1.jpg", "/images/podcast-summaries-2.jpg"]
-      },
-      {
-        "title": "Galerie",
-        "description": "A daily art history quiz that trains your eye to recognize the great masters. Ten paintings, two questions each — identify the artist, then the movement. Covers 20 movements and 48 artists spanning six centuries, with artworks drawn from the collections of the Art Institute of Chicago and the Metropolitan Museum of Art.",
-        "category": "AI / Culture",
-        "url": "https://galerie-art-quiz.netlify.app",
-        "images": ["/images/galerie-1.jpg"]
-      },
-      {
-        "title": "Carmen",
-        "description": "An AI lyric-writing studio that learns your voice and helps you write songs that sound like you. Structured around verses, choruses, and bridges, with line-level tools for rhythm matching, rhyme finding, rewriting, and flow analysis. Works in English and French.",
-        "category": "AI / Music",
-        "url": "https://carmen-app.netlify.app",
-        "images": ["/images/carmen-1.jpg"]
-      },
-      {
-        "title": "Tarot of the Studio",
-        "description": "A personal 78-card tarot deck drawn from my own life and practice. The Major Arcana feature Acadian, Atlantic, and personal concepts; the four suits are Pages (writing), Strings (music), Mirrors (film), and Groves (nature), with court cards following the old French guild progression — Apprentice, Compagnon, Artisan, Maître. Draw one card, three, or a Studio Cross spread.",
-        "category": "AI / Ritual",
-        "url": "https://tarot-of-the-studio.netlify.app",
-        "images": ["/images/tarot-1.jpg"]
-      },
-      {
-        "title": "The Vault",
-        "description": "A living 3D force-directed graph of my personal wiki. Nodes are pages, edges are wikilinks. Carmine project nodes pulse when their repositories have fresh commits; orphan pages drift to the periphery. Click a node to read its entry and see its connections.",
-        "category": "Visualization / Knowledge",
-        "url": "https://the-vault-jac.netlify.app",
-        "images": ["/images/vault-1.jpg"]
-      },
-      {
-        "title": "Willow",
-        "description": "A dog-walk diary for iOS. Clip the leash, tap start, and the phone captures the route in your pocket — no camera, no interruption. When the walk ends, Willow generates a single watercolor postcard of that walk: its time of day, weather, season, and the shape of the path. Built in SwiftUI with CoreLocation, WeatherKit, and AI image generation.",
-        "category": "iOS / AI",
-        "images": ["/images/willow-1.jpg"]
-      },
-      {
-        "title": "Willow Training",
-        "description": "A companion app for training Willow — our actual dog. Tracks the week's plan (four-on-the-floor, place work, greetings), runs timers for place-drill personal bests, and logs wins in the moment. Two-handler mode keeps Jac and partner in sync on streaks, sit rate, and what to work on today.",
-        "category": "Training / Dogs",
-        "url": "https://willow-training.netlify.app",
-        "images": ["/images/willow-training-1.jpg"]
       }
-    ]
+    ],
+    "more": {
+      "text": "And a few hundred more — small tools built for one purpose, most of them in a weekend.",
+      "linkLabel": "Browse the atelier",
+      "url": "https://atelier-jac.netlify.app"
+    }
   },
   
   "contact": {
@@ -174,6 +152,12 @@
       "experience": {
         "title": "Experience",
         "items": [
+          {
+            "role": "Freelance Creative Director",
+            "organization": "Independent",
+            "context": "Television, theatre, and interactive work for Connections Productions, Pays de la Sagouine, and TFO",
+            "period": "May 2025–Present"
+          },
           {
             "role": "Director of Education",
             "organization": "National Film Board of Canada",
@@ -221,15 +205,33 @@
       },
       "skills": {
         "title": "Skills",
-        "content": "As a technological creator, Jac has designed innovative content at the intersection of art, storytelling, and technology."
+        "content": "Three decades of making work that meets an audience — records, live productions, national television, museum installations, and interactive media. Fully bilingual across writing, direction, and production. Now designing and building software as well: web applications, native iOS and macOS apps, and audio instruments, developed solo with AI assistance."
       },
       "highlights": {
         "title": "Highlights",
         "items": [
           {
+            "project": "La grande veillée du temps des fêtes",
+            "context": "Connections Productions — Holiday television special",
+            "year": "2026",
+            "roles": ["Head Researcher", "Content Producer"]
+          },
+          {
+            "project": "La dernière nuit",
+            "context": "Pays de la Sagouine — Summer production",
+            "year": "2026",
+            "roles": ["Script Editing", "Original Songs"]
+          },
+          {
+            "project": "Jam avec Damien",
+            "context": "Music and variety series for TFO",
+            "year": "2026",
+            "roles": ["Content Producer"]
+          },
+          {
             "project": "Acadictionnaire",
             "context": "Pays de la Sagouine",
-            "year": "2025",
+            "year": "2025–2026",
             "roles": ["Writing", "Directing", "Video Scenography", "Songs"]
           },
           {
@@ -270,9 +272,9 @@
           },
           {
             "project": "Pomodoro Poems",
-            "url": "https://instagram.com/gautjac",
-            "context": "One year of daily poems alternating between French and English",
-            "year": "2020–2021",
+            "url": "/poems",
+            "context": "365 daily poems alternating between French and English, resumed in 2026 through Amorce",
+            "year": "2020–2021, 2026–Present",
             "roles": ["Writer", "Creator"]
           },
           {
@@ -338,7 +340,7 @@
         "items": [
           {
             "role": "Member",
-            "organization": "Cultural Board — City of Moncton",
+            "organization": "Cultural Committee — City of Moncton",
             "period": "2025–Present"
           },
           {
