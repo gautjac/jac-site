@@ -23,10 +23,10 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Poem images — deployed via CLI, not tracked in git
-instagram-poems/
+# instagram-poems/ is tracked (it predates this entry) — Netlify builds from
+# git, so anything the site needs has to be committed. public/poems/ is the
+# staging copy sync-archive.mjs builds from it, so that one stays generated.
 public/poems/
-public/poems-amorce/
 
 # Cached Amorce originals (re-fetchable via scripts/fetch-amorce.mjs)
 .cache/

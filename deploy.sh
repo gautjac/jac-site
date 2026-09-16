@@ -1,39 +1,40 @@
 #!/bin/bash
-# Deploy jac-site to Netlify (jacgautreau.com) and push the source to GitHub.
+# Deploy jac-site to jacgautreau.com.
 #
-# Auth comes from the Netlify CLI session (`netlify login`), not from a token in
-# this file — the old hardcoded token was committed to a public repo and has
-# since been revoked. Never put one back here.
+# The Netlify project builds from GitHub (gautjac/jac-site, branch main), so a
+# push IS the deploy. An earlier version of this script also ran a CLI
+# `--prod` deploy; that raced the git build and always lost, which silently
+# published a site missing any file that wasn't committed. Push only.
 #
-# Note the poem images (instagram-poems/, public/poems-amorce/) are gitignored,
-# so they reach the site through this CLI deploy and not through git.
+# That also means everything the site serves has to be in git — including the
+# poem images under instagram-poems/ and public/poems-amorce/.
+#
+# Auth is the GitHub remote. The Netlify token this file used to hardcode was
+# committed to a public repo and has been revoked; never put one back.
 #
 # Usage: ./deploy.sh
 
 set -euo pipefail
 cd "$(dirname "$0")"
 
-SITE_ID=c6d62188-0bf4-4988-88de-b3459c460864
-
-if ! npx netlify-cli status >/dev/null 2>&1; then
-  echo "Not logged in to Netlify. Run: npx netlify-cli login"
-  exit 1
-fi
-
 echo "Refreshing poems from Amorce…"
 node scripts/fetch-amorce.mjs
 node scripts/fit-amorce.mjs
 
-echo "Building…"
+echo "Building locally to catch errors before pushing…"
 npm run build
 
-echo "Deploying…"
-npx netlify-cli deploy --prod --dir=dist --site="$SITE_ID"
-
-echo "Pushing to GitHub…"
 git add -A
-git diff --cached --quiet || git commit -m "Deploy $(date '+%Y-%m-%d %H:%M')"
+if git diff --cached --quiet; then
+  echo "Nothing to deploy — working tree matches HEAD."
+else
+  git commit -m "Deploy $(date '+%Y-%m-%d %H:%M')"
+fi
+
+echo "Pushing — Netlify builds from this push…"
 git pull origin main --rebase --quiet
 git push origin main --quiet
 
-echo "Done — https://jacgautreau.com"
+echo
+echo "Pushed. Netlify is building: https://app.netlify.com/projects/jac-gautreau/deploys"
+echo "Live in a minute or two at https://jacgautreau.com"
