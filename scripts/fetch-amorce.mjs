@@ -29,6 +29,13 @@ const OUT = path.join(ROOT, 'src', 'content', 'amorce-poems.json');
 const FULL_W = 1080, FULL_Q = 78;
 const THUMB_W = 480, THUMB_Q = 72;
 
+// Firestore returns map fields in arbitrary order, so a re-fetch would reshuffle
+// every box and show up as a huge diff. Pin the key order.
+const box = (b, fallback) => {
+  const { x, y, w, h } = b ?? fallback;
+  return { x, y, w, h };
+};
+
 const extFor = (url) => {
   const m = new URL(url).pathname.match(/\.(jpe?g|png|webp|avif)$/i);
   return m ? m[0].toLowerCase() : '.jpg';
@@ -91,8 +98,8 @@ for (const p of raw) {
     fontId: p.fontId ?? 'fraunces',
     titleFontId: p.titleFontId ?? p.fontId ?? 'fraunces',
     titleFontSize: p.titleFontSize,
-    textBox: p.textBox ?? { x: 90, y: 360, w: 900, h: 700 },
-    titleBox: p.titleBox ?? { x: 90, y: 110, w: 900, h: 200 },
+    textBox: box(p.textBox, { x: 90, y: 360, w: 900, h: 700 }),
+    titleBox: box(p.titleBox, { x: 90, y: 110, w: 900, h: 200 }),
     textColor: p.textColor ?? 'light',
     footer: p.footer,
     durationSec: p.durationSec,
