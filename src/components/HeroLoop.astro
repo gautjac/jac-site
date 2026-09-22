@@ -1,0 +1,87 @@
+---
+// The hero motion loop: the tagline, name and subtitle, animated. Built with
+// Tesseract in ~/Claude/builds/jacgautreau-motion (build.py regenerates every cut
+// from src/content/{en,fr}.json, so re-run it after editing the hero copy).
+//
+// Cuts, all in public/video/, named jac-gautreau-hero-{lang}-{5x4|1x1}[-light]:
+//   5x4 = the hero column (md and up), 1x1 = phones (below the portrait grid).
+//   -light = the site's light palette, picked with prefers-color-scheme like the rest of the site.
+//   .mov  HEVC with alpha  (Safari)
+//   .webm VP9 with alpha   (Chrome, Edge, Firefox)
+//   .mp4  opaque fallback  (anything else)
+//   -poster.png  transparent still (no-JS, reduced motion, first paint)
+// The cuts are transparent, so the page's own background shows through: no box,
+// whatever the display's video colour management does. Only the one matching file
+// is downloaded. The video is decorative: the page carries the same words as
+// real text (sr-only).
+interface Props { lang?: 'en' | 'fr'; class?: string }
+const { lang = 'en', class: className = '' } = Astro.props;
+const base = `/video/jac-gautreau-hero-${lang}`;
+---
+<div class={`hero-loop ${className}`} data-base={base} aria-hidden="true">
+  <!-- No poster/src in the markup: the script picks the one right cut, so a phone
+       never fetches the desktop poster first. Without JS, the still below shows. -->
+  <video class="hero-loop__video" autoplay muted loop playsinline preload="auto" tabindex="-1"></video>
+  <noscript><style>.hero-loop__video { display: none !important } .hero-loop__still { display: block !important }</style></noscript>
+  <picture class="hero-loop__still">
+    <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset={`${base}-1x1-light-poster.png`} />
+    <source media="(max-width: 767px)" srcset={`${base}-1x1-poster.png`} />
+    <source media="(prefers-color-scheme: light)" srcset={`${base}-5x4-light-poster.png`} />
+    <img src={`${base}-5x4-poster.png`} alt="" width="1350" height="1080" loading="lazy" />
+  </picture>
+</div>
+
+<style>
+  .hero-loop { position: relative; width: 100%; aspect-ratio: 5 / 4; }
+  .hero-loop__video, .hero-loop__still img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hero-loop__still { display: none; }
+  @media (max-width: 767px) { .hero-loop { aspect-ratio: 1 / 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-loop__video { display: none; }
+    .hero-loop__still { display: block; }
+  }
+</style>
+
+<script>
+  const phone = window.matchMedia('(max-width: 767px)');
+  const light = window.matchMedia('(prefers-color-scheme: light)');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Transparent video needs a different codec per engine: only Safari plays
+  // QuickTime (HEVC + alpha); Chrome and Firefox report '' for it and take VP9 + alpha.
+  function format(video: HTMLVideoElement) {
+    if (video.canPlayType('video/quicktime; codecs="hvc1"')) return 'mov';
+    if (video.canPlayType('video/webm; codecs="vp9"')) return 'webm';
+    return 'mp4';
+  }
+
+  // One source at a time; swap only when the cut or the scheme actually changes.
+  function pick(root: HTMLElement) {
+    const video = root.querySelector('video')!;
+    if (still.matches) { video.removeAttribute('src'); video.load(); return; }
+    const cut = `${phone.matches ? '1x1' : '5x4'}${light.matches ? '-light' : ''}`;
+    if (video.dataset.cut === cut) return;
+    const resumeAt = video.dataset.cut ? video.currentTime : 0;   // keep the beat on a theme flip
+    video.dataset.cut = cut;
+    const src = `${root.dataset.base}-${cut}`;
+    video.poster = `${src}-poster.png`;
+    video.src = `${src}.${format(video)}`;
+    if (resumeAt) video.addEventListener('loadedmetadata', () => { video.currentTime = resumeAt; }, { once: true });
+    video.play().catch(() => {});
+  }
+
+  const roots = [...document.querySelectorAll<HTMLElement>('.hero-loop')];
+  const all = () => roots.forEach(pick);
+  all();
+  [phone, light, still].forEach(mq => mq.addEventListener('change', all));
+  // First visit: the loop's opening plays behind the language modal. When the
+  // visitor picks a language (and stays on this page), start again from the lone period.
+  ['lang-en', 'lang-fr'].forEach(id => document.getElementById(id)?.addEventListener('click', () => {
+    roots.forEach(r => { const v = r.querySelector('video')!; v.currentTime = 0; v.play().catch(() => {}); });
+  }));
+  // Browsers pause muted video in background tabs; pick it back up on return.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && !still.matches)
+      roots.forEach(r => r.querySelector('video')!.play().catch(() => {}));
+  });
+</script>

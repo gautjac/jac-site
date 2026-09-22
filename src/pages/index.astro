@@ -1,4 +1,5 @@
 ---
+import HeroLoop from '../components/HeroLoop.astro';
 import Layout from '../layouts/Layout.astro';
 import content from '../content/en.json';
 ---
@@ -65,19 +66,12 @@ import content from '../content/en.json';
     <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Left: Text Content -->
       <div class="text-center lg:text-left order-2 lg:order-1">
-        <p class="text-accent text-sm tracking-[0.3em] uppercase mb-6 animate-fade-slide-up">
-          {content.hero.tagline.join(' / ')}
-        </p>
-        <h1 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.9] mb-6">
-          <span class="block animate-fade-slide-up delay-200 text-inherit">{content.hero.name.split(' ')[0]}</span>
-          <span class="block animate-fade-slide-up delay-400">
-            <span class="text-accent">{content.hero.name.split(' ')[1]}</span><span class="text-accent">.</span>
-          </span>
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-400 tracking-wide mb-8 animate-fade-slide-up delay-500">
-          {content.hero.subtitle}
-        </p>
-        <div class="flex justify-center lg:justify-start gap-4 animate-fade-slide-up delay-600">
+        <!-- The tagline, name and subtitle live in the motion loop; the same words stay
+             in the page as real text for screen readers and search engines. -->
+        <h1 class="sr-only">{content.hero.name}</h1>
+        <p class="sr-only">{content.hero.tagline.join(' / ')} — {content.hero.subtitle}</p>
+        <HeroLoop lang="en" class="mx-auto max-w-md lg:max-w-none mb-8 animate-fade-in" />
+        <div class="flex justify-center lg:justify-start lg:pl-[16%] gap-4 animate-fade-slide-up delay-600">
           <a href="#work" class="px-8 py-3 bg-accent text-dark font-semibold rounded hover:bg-white transition-colors">
             {content.nav.work}
           </a>
