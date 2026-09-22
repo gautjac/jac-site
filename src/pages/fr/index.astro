@@ -68,11 +68,14 @@ import content from '../../content/fr.json';
         <h1 class="sr-only">{content.hero.name}</h1>
         <p class="sr-only">{content.hero.tagline.join(' / ')} — {content.hero.subtitle}</p>
         <HeroLoop lang="fr" class="mx-auto max-w-md lg:max-w-none mb-8 animate-fade-in" />
-        <div class="flex justify-center lg:justify-start lg:pl-[16%] gap-4 animate-fade-slide-up delay-600">
-          <a href="#work" class="px-8 py-3 bg-accent text-dark font-semibold rounded hover:bg-white transition-colors">
+        <!-- Desktop: the buttons span the name exactly - from the left edge of "Jac /
+             Gautreau" to the right edge of the gold period (16.27% / 83.15% of the
+             loop's width), so they line up with the period during the words too. -->
+        <div class="flex justify-center lg:justify-start lg:pl-[16.27%] lg:pr-[16.85%] gap-4 animate-fade-slide-up delay-600">
+          <a href="#work" class="lg:flex-1 text-center px-8 py-3 bg-accent text-dark font-semibold rounded hover:bg-white transition-colors">
             {content.nav.work}
           </a>
-          <a href="#contact" class="px-8 py-3 border border-white/20 rounded hover:border-accent hover:text-accent transition-colors">
+          <a href="#contact" class="lg:flex-1 text-center px-8 py-3 border border-white/20 rounded hover:border-accent hover:text-accent transition-colors">
             {content.nav.contact}
           </a>
         </div>
