@@ -104,6 +104,13 @@
         "images": ["/images/carmen-1.jpg"]
       },
       {
+        "title": "Le Prisme",
+        "description": "Un synthétiseur visuel pour le navigateur. Il emprunte l'architecture d'un synthé soustractif — calques, modes de fusion, LFO, enveloppes, matrice de modulation — et la pointe sur les pixels plutôt que sur les haut-parleurs. Huit calques de shaders écrits à la main, tous réactifs au son, composités en direct. Il importe les shaders Shadertoy et ISF, et alimente Resolume ou OBS. WebGPU, avec repli WebGL2.",
+        "category": "Visuel / Performance",
+        "url": "https://le-prisme.netlify.app",
+        "images": ["/images/le-prisme-1.jpg"]
+      },
+      {
         "title": "L'Estompe",
         "description": "Une surface de peinture qui continue de bouger quand on lève le crayon. Les traits alimentent une simulation de fluide en direct, les courants deviennent des formes, et une couche de réaction-diffusion laisse l'image se développer toute seule. Conçue pour l'iPad et l'Apple Pencil, avec neuf palettes et un passage Métamorphose qui redessine toute la toile.",
         "category": "Génératif / Dessin",
@@ -123,6 +130,20 @@
         "category": "IA / Écriture",
         "url": "https://jac-amorce.netlify.app",
         "images": ["/images/amorce-1.jpg"]
+      },
+      {
+        "title": "L'Accordeur",
+        "description": "Un accordeur à stroboscope pour iPhone, iPad et Mac. Le disque dérive quand c'est faux et s'arrête net quand c'est juste — la lecture stroboscopique classique, au centième de ton, calculée entièrement sur l'appareil. Vingt-huit accordages alternatifs, des profils par guitare qui portent les notes d'intonation et le capo, et un diapason de 415 à 445 Hz. Conçu comme le compagnon d'un documentaire guitare par guitare. Rien n'est enregistré.",
+        "category": "Musique / iOS et Mac",
+        "url": "https://l-accordeur.netlify.app",
+        "images": ["/images/l-accordeur-1.jpg"]
+      },
+      {
+        "title": "La Girouette",
+        "description": "La météo qui a une opinion. Les conditions exactes pour Moncton ou ailleurs — les 24 prochaines heures, la semaine, le vent, l'UV, le lever du soleil — servies par une voix acadienne pince-sans-rire qui dit ce que les chiffres veulent dire pour ta journée. Tourne en local, sans compte, sans rien demander.",
+        "category": "Météo / Acadie",
+        "url": "https://la-girouette.netlify.app",
+        "images": ["/images/la-girouette-1.jpg"]
       }
     ],
     "more": {

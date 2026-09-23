@@ -104,6 +104,13 @@
         "images": ["/images/carmen-1.jpg"]
       },
       {
+        "title": "Le Prisme",
+        "description": "A visual synthesizer for the browser. It borrows the architecture of a subtractive synth — layers, blend modes, LFOs, envelopes, a mod matrix — and points it at pixels instead of speakers. Eight layers of hand-written shaders, all audio-reactive, composited live. It imports Shadertoy and ISF shaders, so the library isn't limited to what ships with it, and feeds Resolume or OBS. WebGPU, with a WebGL2 fallback.",
+        "category": "Visual / Performance",
+        "url": "https://le-prisme.netlify.app",
+        "images": ["/images/le-prisme-1.jpg"]
+      },
+      {
         "title": "L'Estompe",
         "description": "A painting surface that keeps moving after you lift the pen. Marks feed a live fluid simulation, the currents grow into shapes, and a reaction-diffusion layer lets the image keep developing on its own. Built for iPad and Apple Pencil, with nine palettes and a Metamorphose pass that redraws the whole canvas.",
         "category": "Generative / Drawing",
@@ -123,6 +130,20 @@
         "category": "AI / Writing",
         "url": "https://jac-amorce.netlify.app",
         "images": ["/images/amorce-1.jpg"]
+      },
+      {
+        "title": "L'Accordeur",
+        "description": "A strobe tuner for iPhone, iPad, and Mac. The disc drifts when you're off and stops dead when you're right — the classic strobe read, accurate to a hundredth of a semitone, computed entirely on the device. Twenty-eight alternate tunings, per-guitar profiles carrying intonation notes and capo, and a reference pitch from 415 to 445 Hz. Built as the companion to a guitar-by-guitar documentary. Nothing is recorded.",
+        "category": "Music / iOS & Mac",
+        "url": "https://l-accordeur.netlify.app",
+        "images": ["/images/l-accordeur-1.jpg"]
+      },
+      {
+        "title": "La Girouette",
+        "description": "The weather, with an opinion. Exact conditions for Moncton or anywhere else — the next 24 hours, the week, wind, UV, sunrise — handed over by a deadpan Acadian voice that says what the numbers actually mean for your day. Runs locally, keeps no account, asks for nothing.",
+        "category": "Weather / Acadie",
+        "url": "https://la-girouette.netlify.app",
+        "images": ["/images/la-girouette-1.jpg"]
       }
     ],
     "more": {
