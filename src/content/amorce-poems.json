@@ -1,5 +1,215 @@
 [
   {
+    "id": "2026-09-22-1790114305722",
+    "date": "2026-09-22",
+    "title": "brick",
+    "text": "The first one is always easy.\nEyes open, breathe.\nSet the alarm. Fill the kettle.\nThe body knows before the mind agrees.\n\nThen another, one then all,\neach one a brick you don't remember laying\nuntil you turn around and see the nature\nof a foundation of your making.\n\nNot scaffolding. Not architecture.\nJust the slow accumulation\nof choosing the same thing twice\nto tortuous path to revelation\n\nThe thing you built extends upward\nwithout your permission.\nYou look up and it's taller than you are\ntaller than waiting or indecision",
+    "lang": "en",
+    "nucleus": "stack",
+    "image": "/poems-amorce/2026-09-22-1790114305722.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-22-1790114305722.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 56,
+    "textBox": {
+      "x": 56.98046875,
+      "y": 305.83984375,
+      "w": 718.609375,
+      "h": 597.68359375
+    },
+    "titleBox": {
+      "x": 55.7734375,
+      "y": 106.08203125,
+      "w": 934.2265625,
+      "h": 203.91796875
+    },
+    "textColor": "light",
+    "footer": "amorce · 2026-09-22 · jac gautreau",
+    "durationSec": 602,
+    "createdAt": "2026-09-22T21:58:25.722Z",
+    "fontSize": 23
+  },
+  {
+    "id": "2026-09-21-1790032682533",
+    "date": "2026-09-21",
+    "title": "diapason",
+    "text": "le micro passe de main en main\ncomme une allumette qu'on protège du vent\nchacun souffle tendrement son bout de mélodie\n\nles voix se superposent confuses\nse cherchent dans le désordre\njusqu'à ce qu'un accord se pose \ncomme un oiseau sur la paille\n\nla note se tient, ensemble\nune vibration secrète\nà la recherche du moment\noù l'effort devient habitude\n\net puis plus rien à grimper\njuste ce son qu'on maintient\ncette altitude sans sommet\net on plane",
+    "lang": "fr",
+    "nucleus": "plateau",
+    "image": "/poems-amorce/2026-09-21-1790032682533.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-21-1790032682533.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 43,
+    "textBox": {
+      "x": 596.48828125,
+      "y": 93.87109375,
+      "w": 483.51171875,
+      "h": 592.6875
+    },
+    "titleBox": {
+      "x": 372.15625,
+      "y": 93.1640625,
+      "w": 223.80859375,
+      "h": 120
+    },
+    "textColor": "dark",
+    "footer": "amorce · 2026-09-21 · jac gautrau",
+    "durationSec": 378,
+    "createdAt": "2026-09-21T23:18:02.533Z",
+    "fontSize": 22
+  },
+  {
+    "id": "2026-09-20-1789949064302",
+    "date": "2026-09-20",
+    "title": "on the carpet with headphones on",
+    "text": "The body learns to be a sieve\nnot a vessel that holds\nbut one that lets through.\n\nSound arrives like weather.\nI don't choose the sky,\nI just lie, ready, under it.\n\nThis prone position \nis a kind of faith\nhorizontal, eyes closed,\nletting it all come \nfrom above\nfrom within\nfrom forever.\n\nWhat washes over \ndoesn't ask permission.\nIt tattoos the hollow\nwhere thinking used to be,\nmakes neurons collide\nlike new lovers\nlike right now.",
+    "lang": "en",
+    "nucleus": "headphones",
+    "image": "/poems-amorce/2026-09-20-1789949064302.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-20-1789949064302.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 34,
+    "textBox": {
+      "x": 49.8046875,
+      "y": 550.546875,
+      "w": 900,
+      "h": 700
+    },
+    "titleBox": {
+      "x": 51.08984375,
+      "y": 352.84765625,
+      "w": 900,
+      "h": 200
+    },
+    "textColor": "light",
+    "footer": "amorce · 2026-09-20 · Jac gautreau",
+    "durationSec": 499,
+    "createdAt": "2026-09-21T00:04:24.302Z",
+    "fontSize": 22
+  },
+  {
+    "id": "2026-09-19-1789852153698",
+    "date": "2026-09-19",
+    "title": "résilience",
+    "text": "je garde seulement le lance-et-compte\nles passes décisives\nle reste disparaît\nune statistique de trop\n\nje compte mes respirations\nchaque jour présent\nchaque main tenue\nchaque silence partagé sans peur\nmais pas plus\n\nrien que de moi \nje bifferais mes erreurs\nj'effacerais les tirs manqués\nla sueur surprise, le tango trébuché\nj'y passerais la gomme\nje détruirais les preuves\n\nmais le corps se souvient\nde tout ce qu'on refuse de nommer\net le coeur se souvient\ndes chutes qui nous apprennent l'équilibre",
+    "lang": "fr",
+    "nucleus": "comptage",
+    "image": "/poems-amorce/2026-09-19-1789852153698.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-19-1789852153698.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 56,
+    "textBox": {
+      "x": 74.2265625,
+      "y": 146.984375,
+      "w": 454.953125,
+      "h": 619.859375
+    },
+    "titleBox": {
+      "x": 73.8984375,
+      "y": 43.76953125,
+      "w": 326.40234375,
+      "h": 120
+    },
+    "textColor": "dark",
+    "footer": "amorce · 2026-09-19 · comptage",
+    "durationSec": 473,
+    "createdAt": "2026-09-19T21:09:13.698Z",
+    "fontSize": 20
+  },
+  {
+    "id": "2026-09-18-1789849561967",
+    "date": "2026-09-18",
+    "title": "extra hour",
+    "text": "I wake to see the hour\nI should have been up already.\nThe alarm, ignored or silenced\nI can't remember which.\n\nOutside, the yard has softened its edges.\nTrees I know by heart\nrefuse their names this morning.\n\nWhat did I miss? When did I forget?\nThe sharpness I thought I needed,\nthe clear division between here and there.\n\nI could get up now, \ncatch up,\nor I could sit in this hurkle-durkle\nI could enjoy the way the world \nholds still \nwhen it can't see itself clearly.",
+    "lang": "en",
+    "nucleus": "fog",
+    "image": "/poems-amorce/2026-09-18-1789849561967.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-18-1789849561967.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 56,
+    "textBox": {
+      "x": 543.83984375,
+      "y": 171.49609375,
+      "w": 488.25,
+      "h": 555.3359375
+    },
+    "titleBox": {
+      "x": 545.08984375,
+      "y": 54.26171875,
+      "w": 293.734375,
+      "h": 120
+    },
+    "textColor": "dark",
+    "footer": "amorce · 2026-09-18 · jac gautreau",
+    "durationSec": 181,
+    "createdAt": "2026-09-19T20:26:01.967Z",
+    "fontSize": 21
+  },
+  {
+    "id": "2026-09-17-1789675142999",
+    "date": "2026-09-17",
+    "title": "rideau",
+    "text": "Je regarde la salle depuis la scène\nles visages flottent dans le noir choisi\nchaque tête captée par la lumière obscène\nqui fait danser les ombres sur leurs habits\n\nils ne savent pas que je les compte\nque je cherche dans leurs yeux ouverts\nun reflet de ce que je raconte\nun signe qu'ils ont traversé l'envers\n\nl'empreinte que je laisse ou pas\ndans cette constellation de chairs\nje la mesure à ce que je vois là\naux tempes, aux rides, aux paupières\n\nla lumière s'éteint, ils se lèvent\nils reprennent leurs manteaux, leurs clés\net je reste ici, mauvais élève\nsans savoir ce qui va rester gravé",
+    "lang": "fr",
+    "nucleus": "empreinte",
+    "image": "/poems-amorce/2026-09-17-1789675142999.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-17-1789675142999.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 56,
+    "textBox": {
+      "x": 627.8564453125,
+      "y": 397.8564453125,
+      "w": 425.3369140625,
+      "h": 571.8017578125
+    },
+    "titleBox": {
+      "x": 628.740234375,
+      "y": 271.552734375,
+      "w": 260,
+      "h": 128.0029296875
+    },
+    "textColor": "light",
+    "footer": "amorce · 2026-09-17 · jac gautreau",
+    "durationSec": 201,
+    "createdAt": "2026-09-17T19:59:02.999Z",
+    "fontSize": 21
+  },
+  {
+    "id": "2026-09-16-1789604326497",
+    "date": "2026-09-16",
+    "title": "back to you",
+    "text": "I walk the block before the sun\nand count my breath in fours\nThe route bends back to where I've run\na thousand times before\n\nThe kettle clicks the same small sound\nthe mug sits where it sat\nThe dog comes back when she's unwound\nher leash around the mat\n\nI used to think a different path\nwould shake me into new\nBut all my days add up to math\nthat circles back to you\n\nThe door I close is where I start\nthe light that dims is dawn\nI map the chambers of my heart\nand find the shades are drawn\n\nBut still I trace the same worn groove\nI tighten all that's loose\nThe shape repeats until I prove\nit's neither trap nor noose",
+    "lang": "en",
+    "nucleus": "ring",
+    "image": "/poems-amorce/2026-09-16-1789604326497.webp",
+    "thumb": "/poems-amorce/thumb/2026-09-16-1789604326497.webp",
+    "fontId": "quicksand",
+    "titleFontId": "quicksand",
+    "titleFontSize": 56,
+    "textBox": {
+      "x": 43.5595703125,
+      "y": 161.2744140625,
+      "w": 936.6064453125,
+      "h": 757.20703125
+    },
+    "titleBox": {
+      "x": 42.6513671875,
+      "y": 42.2021484375,
+      "w": 392.109375,
+      "h": 120
+    },
+    "textColor": "dark",
+    "footer": "amorce · 2026-09-16 · jac gautreau",
+    "durationSec": 464,
+    "createdAt": "2026-09-17T00:18:46.497Z",
+    "fontSize": 23
+  },
+  {
     "id": "2026-09-15-1789516499773",
     "date": "2026-09-15",
     "title": "vieillir",
